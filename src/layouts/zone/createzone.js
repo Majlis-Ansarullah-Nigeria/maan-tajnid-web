@@ -29,6 +29,8 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+import {createZoneFetch} from "../../gateway";
+// import { SnackbarProvider, useSnackbar } from 'notistack';
 // Authentication layout components
 
 // Images
@@ -39,6 +41,28 @@ import MDButton from "components/MDButton";
 // Images
 
 function CreateZone() {
+  const handleClick = async () => {
+    const zoneName = document.querySelector("#zoneName")
+    const zoneCode = document.querySelector("#zoneCode")
+    const zoneNameValue = zoneName.value;
+    const zoneCodeValue = zoneCode.value;
+    const data = {
+      "name": zoneNameValue,
+      "code": zoneCodeValue
+    };
+    let createZoneResponse = await createZoneFetch(data);
+    console.log(createZoneResponse);
+    if(createZoneResponse == false)
+    {
+      enqueueSnackbar(element, "error");
+    }
+    else{
+      createZoneResponse.messages.forEach(element => {
+        enqueueSnackbar(element, "success");
+      });
+    }
+    
+  }
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -59,35 +83,18 @@ function CreateZone() {
             <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
               Create Zone
             </MDTypography>
-            {/* <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-              <Grid item xs={2}>
-                <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                  <FacebookIcon color="inherit" />
-                </MDTypography>
-              </Grid>
-              <Grid item xs={2}>
-                <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                  <GitHubIcon color="inherit" />
-                </MDTypography>
-              </Grid>
-              <Grid item xs={2}>
-                <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                  <GoogleIcon color="inherit" />
-                </MDTypography>
-              </Grid>
-            </Grid> */}
           </MDBox>
           <MDBox pt={4} pb={3} px={3}>
             <MDBox component="form" role="form">
               <MDBox mb={2}>
-                <MDInput type="text" label="Name" fullWidth />
+                <MDInput type="text" label="Name" id="zoneName" fullWidth />
               </MDBox>
               <MDBox mb={2}>
-                <MDInput type="text" label="Code" fullWidth />
+                <MDInput type="text" label="Code" id="zoneCode" fullWidth />
               </MDBox>
               
               <MDBox mt={4} mb={1}>
-                <MDButton variant="gradient" color="info" fullWidth>
+                <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
                   Submit
                 </MDButton>
               </MDBox>
