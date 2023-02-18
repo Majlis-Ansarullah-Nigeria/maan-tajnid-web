@@ -20,6 +20,7 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import {fetchZone, updateZoneFetch} from "../../gateway";
 
 // react-router-dom components
 
@@ -29,6 +30,7 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
+import { useState } from 'react';
 // Authentication layout components
 
 // Images
@@ -39,6 +41,34 @@ import MDButton from "components/MDButton";
 // Images
 
 function EditZone() {
+  const zoneName = document.querySelector("#zoneName")
+    const zoneCode = document.querySelector("#zoneCode")
+    const id = window.location.href.split("=")[1];
+    let initInfo = {
+      name: "",
+      code: "",
+    };
+    const [zone, setZone] = useState(initInfo);
+    const getZone = async () => {
+      const zone = await fetchZone(id);
+      setZone(zone.data)
+    }
+    getZone();
+
+
+  const handleClick = async () => {
+    const zoneNameValue = zoneName.value;
+    const zoneCodeValue = zoneCode.value;
+    const data = {
+      "name": zoneNameValue,
+      "code": zoneCodeValue
+    };
+    let updateZoneResponse = await updateZoneFetch(data, id);
+    console.log(updateZoneResponse);
+    
+  }
+
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -63,14 +93,14 @@ function EditZone() {
           <MDBox pt={4} pb={3} px={3}>
             <MDBox component="form" role="form">
               <MDBox mb={2}>
-                <MDInput type="text" label="Name" fullWidth />
+                <MDInput type="text" label="Name" id="zoneName" value={zone.name} fullWidth />
               </MDBox>
               <MDBox mb={2}>
-                <MDInput type="text" label="Code" fullWidth />
+                <MDInput type="text" label="Code" id="zoneCode" value={zone.code} fullWidth />
               </MDBox>
               
               <MDBox mt={4} mb={1}>
-                <MDButton variant="gradient" color="info" fullWidth>
+                <MDButton variant="gradient" color="info" fullWidth onClick={handleClick}>
                   Save Changes
                 </MDButton>
               </MDBox>

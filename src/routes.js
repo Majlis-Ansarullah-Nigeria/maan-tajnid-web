@@ -45,7 +45,6 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Zones from "layouts/zone/zonetable";
-import CreateZone from "layouts/zone/createzone";
 
 // @mui icons
 import Icon from "@mui/material/Icon";

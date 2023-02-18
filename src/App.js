@@ -55,6 +55,7 @@ import brandDark from "assets/images/logo-ct-dark.png";
 
 //
 import CreateZone from "layouts/zone/createzone";
+import EditZone from "layouts/zone/editzone";
 
 
 export default function App() {
@@ -173,6 +174,7 @@ export default function App() {
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
           <Route exact path="/zone/create" element={CreateZone} key={"create-zone"} />;
+          <Route exact path="/zone/edit" element={<EditZone/>} key={"edit-zone"} />;
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -198,6 +200,7 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route exact path="/zone/create" element={<CreateZone/>} key={"create-zone"} />;
+        <Route exact path="/zone/edit" element={<EditZone/>} key={"edit-zone"} />;
       </Routes>
     </ThemeProvider>
   );

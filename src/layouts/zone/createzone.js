@@ -30,6 +30,8 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import {createZoneFetch} from "../../gateway";
+import Alert from '@mui/material/Alert';
+
 // import { SnackbarProvider, useSnackbar } from 'notistack';
 // Authentication layout components
 
@@ -54,11 +56,11 @@ function CreateZone() {
     console.log(createZoneResponse);
     if(createZoneResponse == false)
     {
-      enqueueSnackbar(element, "error");
+      // enqueueSnackbar(element, "error");
     }
     else{
       createZoneResponse.messages.forEach(element => {
-        enqueueSnackbar(element, "success");
+        // enqueueSnackbar(element, "success");
       });
     }
     
@@ -96,6 +98,9 @@ function CreateZone() {
               <MDBox mt={4} mb={1}>
                 <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
                   Submit
+                </MDButton>
+                <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
+                  Cancel
                 </MDButton>
               </MDBox>
             </MDBox>
