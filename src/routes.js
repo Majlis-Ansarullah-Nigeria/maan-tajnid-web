@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Material Dashboard 2 React - v2.1.0
+* MAAN Portal React - v2.1.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 /** 
-  All of the routes for the Material Dashboard 2 React are added here,
+  All of the routes for the MAAN Portal React are added here,
   You can add a new route, customize the routes and delete the routes here.
 
   Once you add a new route on this file it will be visible automatically on
@@ -35,9 +35,8 @@ Coded by www.creative-tim.com
   10. The `component` key is used to store the component of its route.
 */
 
-// Material Dashboard 2 React layouts
+// MAAN Portal React layouts
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
@@ -45,9 +44,12 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Zones from "layouts/zone/zonetable";
+import Muqaamat from "layouts/muqam/muqaamatTable";
+import Dilaat from "layouts/dila/dilatable";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import Members from "layouts/members/memberlist";
 
 const routes = [
   {
@@ -60,44 +62,37 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
+    name: "Members",
+    key: "members-list",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    route: "/members",
+    component: <Members />,
   },
   {
     type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
+    name: "Zones",
+    key: "zones-list",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/zones",
+    component: <Zones />,
   },
   {
     type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
+    name: "Dilaat",
+    key: "dilas-list",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/dilaat",
+    component: <Dilaat />,
   },
   {
     type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
+    name: "Muqaamat",
+    key: "muqam-list",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/muqaamat",
+    component: <Muqaamat />,
   },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
+ 
   {
     type: "collapse",
     name: "Sign In",
@@ -113,14 +108,6 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,
-  },
-  {
-    type: "collapse",
-    name: "Zones",
-    key: "zone-list",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/zones",
-    component: <Zones />,
   },
 ];
 

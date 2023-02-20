@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Material Dashboard 2 React - v2.1.0
+* MAAN Portal React - v2.1.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
@@ -14,10 +14,10 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-// Material Dashboard 2 React components
+// MAAN Portal React components
 import './style.css'
 import MDBox from "components/MDBox";
-// Material Dashboard 2 React example components
+// MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
@@ -25,7 +25,7 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // @mui material components
 import Card from "@mui/material/Card";
-// Material Dashboard 2 React components
+// MAAN Portal React components
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";

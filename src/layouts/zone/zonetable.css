@@ -2,3 +2,11 @@ a{
     display: block;
     margin: 5% !important;
 }
+.css-11qgpv8-MuiTable-root {
+    display: table;
+    width: 170%;
+}
+
+.css-1mbunh-MuiPaper-root {
+    overflow-x: hidden;
+}

@@ -1,0 +1,11 @@
+.cont{
+    display: flex;
+}
+.card-container {
+    width: 40%;
+    margin-right: 2%;
+}
+.css-56s1s1-MuiInputBase-root-MuiOutlinedInput-root {
+    width: 100%;
+    height: 40px;
+}

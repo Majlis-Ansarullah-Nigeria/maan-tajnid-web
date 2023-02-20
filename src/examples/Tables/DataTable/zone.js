@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Material Dashboard 2 React - v2.1.0
+* MAAN Portal React - v2.1.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
@@ -24,13 +24,13 @@ import { useTable, usePagination, useGlobalFilter, useAsyncDebounce, useSortBy }
 // @mui material components
 import TableContainer from "@mui/material/TableContainer";
 
-// Material Dashboard 2 React components
+// MAAN Portal React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDPagination from "components/MDPagination";
 
-// Material Dashboard 2 React example components
+// MAAN Portal React example components
 import {Zones} from "../../../gateway"
 
 function ZoneTable({

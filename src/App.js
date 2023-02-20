@@ -1,6 +1,6 @@
 /**
 =========================================================
-* Material Dashboard 2 React - v2.1.0
+* MAAN Portal React - v2.1.0
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
@@ -23,18 +23,18 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 
-// Material Dashboard 2 React components
+// MAAN Portal React components
 import MDBox from "components/MDBox";
 
-// Material Dashboard 2 React example components
+// MAAN Portal React example components
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 
-// Material Dashboard 2 React themes
+// MAAN Portal React themes
 import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
 
-// Material Dashboard 2 React Dark Mode themes
+// MAAN Portal React Dark Mode themes
 import themeDark from "assets/theme-dark";
 import themeDarkRTL from "assets/theme-dark/theme-rtl";
 
@@ -43,10 +43,10 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
-// Material Dashboard 2 React routes
+// MAAN Portal React routes
 import routes from "routes";
 
-// Material Dashboard 2 React contexts
+// MAAN Portal React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
@@ -56,6 +56,8 @@ import brandDark from "assets/images/logo-ct-dark.png";
 //
 import CreateZone from "layouts/zone/createzone";
 import EditZone from "layouts/zone/editzone";
+import EditDila from "layouts/dila/editdila";
+import Zone from "layouts/zone/zoneview";
 
 
 export default function App() {
@@ -160,7 +162,7 @@ export default function App() {
             <Sidenav
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-              brandName="Material Dashboard 2"
+              brandName="MAAN Portal"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
@@ -174,7 +176,7 @@ export default function App() {
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/dashboard" />} />
           <Route exact path="/zone/create" element={CreateZone} key={"create-zone"} />;
-          <Route exact path="/zone/edit" element={<EditZone/>} key={"edit-zone"} />;
+          <Route exact path="/zone" element={<Zone/>} key={"zone"} />;
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -186,7 +188,7 @@ export default function App() {
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-            brandName="Material Dashboard 2"
+            brandName="MAAN Portal"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
@@ -201,6 +203,9 @@ export default function App() {
         <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route exact path="/zone/create" element={<CreateZone/>} key={"create-zone"} />;
         <Route exact path="/zone/edit" element={<EditZone/>} key={"edit-zone"} />;
+        <Route exact path="/zone" element={<Zone/>} key={"zone"} />;
+        <Route exact path="/dila/edit" element={<EditDila/>} key={"edit-dila"} />;
+        <Route exact path="/zone" element={<Zone/>} key={"zone"} />;
       </Routes>
     </ThemeProvider>
   );
