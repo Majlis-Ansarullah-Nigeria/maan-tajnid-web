@@ -1,8 +1,8 @@
 import MaterialTable from "material-table";
-// import LinearProgress from '@mui/material/LinearProgress';
 import LongMenu from './components/ThreeDotsMenu/LongMenu';
-import Button from '@mui/material/Button';
+import displaySelect from "displaySelects"
 import "./style.css"
+import { useRef, useState  } from "react";
 
 export const createZoneFetch = async (bodyObj) => {
     
@@ -191,8 +191,14 @@ export function DilaMuqaam(props) {
   );
 }
 
-export function Members(props) {
-
+export function Members() {
+  let [url, setUrl] = useState(`https://localhost:7078/api/Member`);
+  const tableRef = useRef();
+  const setSelects = () => {
+    // tableRef.current.onQueryChange()
+    displaySelect(tableRef);
+    
+  }
   const columns = [
     {title: "Member Number", field:"chandaNo"},
     {title: "Name", render:rowData => (`${rowData.firstName} ${rowData.surname}`)},
@@ -204,15 +210,27 @@ export function Members(props) {
   return (
     <div className="app">
       <div className="container">
+       <div>
+       <select id="zones" onClick={setSelects}  className="my-select">
+        </select>
+        <select id="dilas" style={{display : 'none'}} className="my-select">
+        </select>
+        <select id="muqam" style={{display : 'none'}} className="my-select">
+        </select>
+       </div>
         <MaterialTable
         title="Members"
         columns = {columns}
+        tableRef={tableRef}
         data={(query) => new Promise((resolve, reject) => {
-          
-          let url = `https://localhost:7078/api/Member?`;
-          url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
-          fetch(url).then(resp => resp.json()).then(resp => {
-            console.log(resp);
+          if((localStorage.getItem("url")) != undefined || (localStorage.getItem("url")))
+          {
+            setUrl((localStorage.getItem("url")));
+          }
+          const webPath = url +`?PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
+          fetch(webPath).then(resp => resp.json()).then(resp => {
+            localStorage.removeItem("url");
+            console.log(webPath);
               resolve({
                 data:resp.data.data,
                 page: query.page,
@@ -225,4 +243,6 @@ export function Members(props) {
       </div>
     </div>
   );
+  
 }
+

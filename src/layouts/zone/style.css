@@ -12,3 +12,8 @@
 .css-13tavyo-MuiButtonBase-root-MuiButton-root {
     margin: 2% !important;
 }
+
+.css-k6nd4d-MuiSnackbar-root {
+    top: -40pc;
+    right: 24px;
+}

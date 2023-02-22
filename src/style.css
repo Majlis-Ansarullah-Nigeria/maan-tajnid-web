@@ -2,10 +2,9 @@ thead{
     display: contents !important;
     color: #ff4800;
 }
-/* td:last-child {
-   background-color: brown;
+.my-select {
+    width: 12pc;
+    height: 2pc;
+    border-radius: 10px;
+    border: 2px solid;
 }
-
-.Component-paginationRoot-1{
-    background-color: white !important;
-} */

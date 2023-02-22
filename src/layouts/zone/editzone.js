@@ -30,7 +30,9 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-import { useState } from 'react';
+import { useState } from "react";
+import MDSnackbar from "components/MDSnackbar";
+import Grid from "@mui/material/Grid";
 // Authentication layout components
 
 // Images
@@ -41,6 +43,41 @@ import { useState } from 'react';
 // Images
 
 function EditZone() {
+  const succesMessage = "Zone created successfully"
+  const errorMessage = "Zone with the same name or code already exist"
+  const [successSB, setSuccessSB] = useState(false);
+  const [errorSB, setErrorSB] = useState(false);
+
+const closeErrorSB = () => setErrorSB(false);
+const closeSuccessSB = () => setSuccessSB(false);
+  const renderSuccessSB = (
+    <MDSnackbar
+      color="success"
+      icon="check"
+      title="Majlis Ansarullah"
+      content= {succesMessage}
+      dateTime="11 mins ago"
+      open={successSB}
+      onClose={closeSuccessSB}
+      close={closeSuccessSB}
+      bgWhite
+    />
+  );
+  const renderErrorSB = (
+    <MDSnackbar
+      color="error"
+      icon="warning"
+      title="Majlis Ansarullah"
+      content= {errorMessage}
+      dateTime="11 mins ago"
+      open={errorSB}
+      onClose={closeErrorSB}
+      close={closeErrorSB}
+      bgWhite
+    />
+  );
+
+
   const zoneName = document.querySelector("#zoneName")
     const zoneCode = document.querySelector("#zoneCode")
     const id = window.location.href.split("=")[1];
@@ -58,14 +95,16 @@ function EditZone() {
 
 
   const handleClick = async () => {
-    const zoneNameValue = zoneName.value;
-    const zoneCodeValue = zoneCode.value;
-    const data = {
-      "name": zoneNameValue,
-      "code": zoneCodeValue
-    };
-    let updateZoneResponse = await updateZoneFetch(data, id);
-    console.log(updateZoneResponse);
+    setSuccessSB(true)
+    console.log("trrrrrrrrrrrrrrrr")
+    // const zoneNameValue = zoneName.value;
+    // const zoneCodeValue = zoneCode.value;
+    // const data = {
+    //   "name": zoneNameValue,
+    //   "code": zoneCodeValue
+    // };
+    // let updateZoneResponse = await updateZoneFetch(data, id);
+    // console.log(updateZoneResponse);
     
   }
 
@@ -74,6 +113,10 @@ function EditZone() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
+      <Grid item xs={12} sm={6} lg={3}>
+        {renderSuccessSB}
+        {renderErrorSB}
+      </Grid>
       <div className="card-container">
       <Card>
           <MDBox

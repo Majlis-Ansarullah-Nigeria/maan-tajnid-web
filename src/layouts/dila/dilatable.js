@@ -57,11 +57,6 @@ function Dilaat() {
                 <MDTypography variant="h6" color="white">
                   Dilaat
                 </MDTypography>
-                <MDTypography variant="h6" color="white">
-                <Button variant="outlined" href="/zone/create">
-                  <AddLocationAltIcon/>  New Zone
-                </Button>
-                </MDTypography>
               </MDBox>
               <MDBox pt={3}>
                 <DilaTable

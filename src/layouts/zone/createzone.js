@@ -20,7 +20,8 @@ import MDBox from "components/MDBox";
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
+import { useState } from "react";
+import MDSnackbar from "components/MDSnackbar";
 // react-router-dom components
 
 // @mui material components
@@ -30,8 +31,7 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import {createZoneFetch} from "../../gateway";
-import Alert from '@mui/material/Alert';
-
+import Grid from "@mui/material/Grid";
 // import { SnackbarProvider, useSnackbar } from 'notistack';
 // Authentication layout components
 
@@ -43,7 +43,43 @@ import Alert from '@mui/material/Alert';
 // Images
 
 function CreateZone() {
+  const succesMessage = "Zone created successfully"
+  const errorMessage = "Zone with the same name or code already exist"
+  const [successSB, setSuccessSB] = useState(false);
+  const [errorSB, setErrorSB] = useState(false);
+
+const closeErrorSB = () => setErrorSB(false);
+const closeSuccessSB = () => setSuccessSB(false);
+  const renderSuccessSB = (
+    <MDSnackbar
+      color="success"
+      icon="check"
+      title="Majlis Ansarullah"
+      content= {succesMessage}
+      dateTime="11 mins ago"
+      open={successSB}
+      onClose={closeSuccessSB}
+      close={closeSuccessSB}
+      bgWhite
+    />
+  );
+  const renderErrorSB = (
+    <MDSnackbar
+      color="error"
+      icon="warning"
+      title="Majlis Ansarullah"
+      content= {errorMessage}
+      dateTime="11 mins ago"
+      open={errorSB}
+      onClose={closeErrorSB}
+      close={closeErrorSB}
+      bgWhite
+    />
+  );
+
+
   const handleClick = async () => {
+    
     const zoneName = document.querySelector("#zoneName")
     const zoneCode = document.querySelector("#zoneCode")
     const zoneNameValue = zoneName.value;
@@ -54,21 +90,26 @@ function CreateZone() {
     };
     let createZoneResponse = await createZoneFetch(data);
     console.log(createZoneResponse);
-    if(createZoneResponse == false)
+    if(createZoneResponse.status == false)
     {
-      // enqueueSnackbar(element, "error");
+      setErrorSB(true);
     }
     else{
       createZoneResponse.messages.forEach(element => {
-        // enqueueSnackbar(element, "success");
+        setSuccessSB(true)
       });
     }
+   
     
   }
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
+      <Grid item xs={12} sm={6} lg={3}>
+        {renderSuccessSB}
+        {renderErrorSB}
+      </Grid>
       <div className="card-container">
       <Card>
           <MDBox
@@ -98,9 +139,6 @@ function CreateZone() {
               <MDBox mt={4} mb={1}>
                 <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
                   Submit
-                </MDButton>
-                <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
-                  Cancel
                 </MDButton>
               </MDBox>
             </MDBox>

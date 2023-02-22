@@ -56,11 +56,7 @@ function Zones() {
                 <MDTypography variant="h6" color="white">
                   Zones
                 </MDTypography>
-                <MDTypography variant="h6" color="white">
-                <Button variant="outlined" href="/zone/create">
-                  <AddLocationAltIcon/>  New Zone
-                </Button>
-                </MDTypography>
+                
               </MDBox>
               <MDBox pt={3}>
                 <MuqaamTable

@@ -109,15 +109,18 @@ function EditDila() {
     const [zones, setZones] = useState(ar);
     const getDilaInfo = async () => {
         const dila = await getDila(id);
+        setPersonName(zone.data.zoneName)
         setdilaInfo(dila.data)
         const zone = await fetchZonesDropdown();
         setZones(zone.data);
     }
-    getDilaInfo();
+    // getDilaInfo();
   const handleClick = async () => {
-    const update = await updateDila(personName, id);
-    console.log(update);
-    
+    if(dilaInfo.name != personName)
+    {
+      const update = await updateDila(personName, id);
+      console.log(update);
+    }
   }
 
   const { columns, rows } = authorsTableData();
@@ -151,23 +154,23 @@ function EditDila() {
                 <MDBox mb={2}>
                 <InputLabel id="demo-multiple-name-label">Zone</InputLabel>
                 <Select
-                  labelId="demo-multiple-name-label"
-                  id="zoneName"
-                  defaultValue={"dilaInfo.zoneName"}
-                  onChange={handleChange}
-                  input={<OutlinedInput label="Name" />}
-                  MenuProps={MenuProps}
-                >
-                  {zones.map((name) => (
-                    <MenuItem
-                      key={name.name}
-                      value={name.id}
-                      style={getStyles(name.name, personName, theme)}
-                    >
-                      {name.name}
-                    </MenuItem>
-                ))}
-              </Select>
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+        >
+          {zones.map((name) => (
+            <MenuItem
+              key={name.name}
+              value={name.name}
+              style={getStyles(name.name, personName, theme)}
+            >
+              {name.name}
+            </MenuItem>
+          ))}
+        </Select>
                 </MDBox>
                 
                 <MDBox mt={4} mb={1}>

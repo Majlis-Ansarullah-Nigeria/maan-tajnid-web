@@ -62,6 +62,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Notification",
+    key: "not",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/notification",
+    component: <Notifications />,
+  },
+  {
+    type: "collapse",
     name: "Members",
     key: "members-list",
     icon: <Icon fontSize="small">table_view</Icon>,
