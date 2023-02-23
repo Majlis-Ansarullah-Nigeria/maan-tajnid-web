@@ -35,7 +35,7 @@ import projectsTableData from "layouts/tables/data/projectsTableData";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 function Zones() {
   const { columns, rows } = authorsTableData();
-  const { columns: pColumns, rows: pRows } = projectsTableData();
+  // const { columns: pColumns, rows: pRows } = projectsTableData();
 
   return (
     <DashboardLayout>

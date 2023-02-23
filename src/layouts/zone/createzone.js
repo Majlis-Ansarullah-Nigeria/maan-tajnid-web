@@ -90,7 +90,7 @@ const closeSuccessSB = () => setSuccessSB(false);
     };
     let createZoneResponse = await createZoneFetch(data);
     console.log(createZoneResponse);
-    if(createZoneResponse.status == false)
+    if(createZoneResponse.messages == undefined)
     {
       setErrorSB(true);
     }

@@ -109,12 +109,12 @@ function EditDila() {
     const [zones, setZones] = useState(ar);
     const getDilaInfo = async () => {
         const dila = await getDila(id);
-        setPersonName(zone.data.zoneName)
+        setPersonName(dilaInfo.zoneName)
         setdilaInfo(dila.data)
         const zone = await fetchZonesDropdown();
         setZones(zone.data);
     }
-    // getDilaInfo();
+    getDilaInfo();
   const handleClick = async () => {
     if(dilaInfo.name != personName)
     {
