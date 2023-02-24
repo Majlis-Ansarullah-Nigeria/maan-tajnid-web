@@ -15,13 +15,12 @@ Coded by www.creative-tim.com
 
 // @mui material components
 // MAAN Portal React components
-import './style.css'
 import MDBox from "components/MDBox";
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import {fetchZone, updateZoneFetch} from "../../gateway";
-
+import { useState } from "react";
+import MDSnackbar from "components/MDSnackbar";
 // react-router-dom components
 
 // @mui material components
@@ -30,9 +29,9 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-import { useState } from "react";
-import MDSnackbar from "components/MDSnackbar";
+import {createRole} from "../../gateway";
 import Grid from "@mui/material/Grid";
+// import { SnackbarProvider, useSnackbar } from 'notistack';
 // Authentication layout components
 
 // Images
@@ -42,9 +41,9 @@ import Grid from "@mui/material/Grid";
 // Data
 // Images
 
-function EditZone() {
-  const succesMessage = "Zone updated successfully"
-  const errorMessage = "Error occured"
+function CreateRole() {
+  const succesMessage = "Role created successfully"
+  const errorMessage = "Role with the same name or code already exist"
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
 
@@ -78,36 +77,27 @@ const closeSuccessSB = () => setSuccessSB(false);
   );
 
 
-  const zoneName = document.querySelector("#zoneName")
-    const zoneCode = document.querySelector("#zoneCode")
-    const id = window.location.href.split("=")[1];
-    let initInfo = {
-      name: "",
-      code: "",
-    };
-    const [zone, setZone] = useState(initInfo);
-    const getZone = async () => {
-      const zone = await fetchZone(id);
-      setZone(zone.data)
-    }
-    getZone();
-
-
   const handleClick = async () => {
-    setSuccessSB(true)
-    console.clear("trrrrrrrrrrrrrrrr")
-    const zoneNameValue = zoneName.value;
-    const zoneCodeValue = zoneCode.value;
-    const data = {
-      "name": zoneNameValue,
-      "code": zoneCodeValue
-    };
-    let updateZoneResponse = await updateZoneFetch(data, id);
-    console.log(updateZoneResponse);
-    
-  }
-
-
+        let name = document.querySelector("#name")
+        let email = document.querySelector("#email")
+        let desc = document.querySelector("#desc")
+        const data = {
+          "name": name.value,
+          "email": email.value,
+          "description": desc.value
+        };
+        let response = await createRole(data);
+        console.log(response);
+        if(response.messages == undefined)
+        {
+          setErrorSB(true);
+        }
+        else{
+          response.messages.forEach(element => {
+            setSuccessSB(true)
+          });
+        }
+    }
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -130,21 +120,24 @@ const closeSuccessSB = () => setSuccessSB(false);
             textAlign="center"
           >
             <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-              Edit Zone
+              Create Role
             </MDTypography>
           </MDBox>
           <MDBox pt={4} pb={3} px={3}>
             <MDBox component="form" role="form">
               <MDBox mb={2}>
-                <input type={"text"} id="zoneName" defaultValue={zone.name} />
+                <MDInput type="text" id="name" label="Name" fullWidth />
               </MDBox>
               <MDBox mb={2}>
-                <input type={"text"} id="zoneCode" defaultValue={zone.code} />
+                <MDInput type="text" id="email" label="Email" fullWidth />
+              </MDBox>
+              <MDBox mb={2}>
+                <MDInput type="text" id="desc" label="Description" fullWidth />
               </MDBox>
               
               <MDBox mt={4} mb={1}>
-                <MDButton variant="gradient" color="info" fullWidth onClick={handleClick}>
-                  Save Changes
+                <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
+                  Submit
                 </MDButton>
               </MDBox>
             </MDBox>
@@ -155,4 +148,4 @@ const closeSuccessSB = () => setSuccessSB(false);
   );
 }
 
-export default EditZone;
+export default CreateRole;

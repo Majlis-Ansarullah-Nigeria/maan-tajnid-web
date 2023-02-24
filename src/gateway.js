@@ -1,6 +1,5 @@
 import MaterialTable from "material-table";
 import LongMenu from './components/ThreeDotsMenu/LongMenu';
-import displaySelect from "displaySelects"
 import "./style.css"
 import { useRef, useState, useEffect } from "react";
 
@@ -16,6 +15,23 @@ export const createZoneFetch = async (bodyObj) => {
 
   };
   const postZone = await fetch("https://localhost:7078/api/Utility/zone", settings);
+  if (postZone.status == 400) {
+    return false;
+  }
+  return postZone.json();
+}
+export const createRole = async (bodyObj) => {
+
+  const settings = {
+
+    method: "POST",
+    body: JSON.stringify(bodyObj),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+
+  };
+  const postZone = await fetch("https://localhost:7078/api/User/Roles", settings);
   if (postZone.status == 400) {
     return false;
   }
@@ -52,6 +68,18 @@ export const fetchZone = async (id) => {
   return postZone.json();
 }
 
+
+export const fetchMemberInfo = async (id) => {
+
+  const postZone = await fetch(`https://localhost:7078/api/Member/${id}`);
+  return postZone.json();
+}
+export const fetchMuqaam = async (id) => {
+
+  const postZone = await fetch(`https://localhost:7078/api/Utility/muqamaat/${id}`);
+  return postZone.json();
+}
+
 export const fetchZonesDropdown = async () => {
 
   const postZone = await fetch(`https://localhost:7078/api/Utility/zones/nopagination`);
@@ -70,7 +98,7 @@ export function Zones() {
     { title: "Name", field: "name" },
     { title: "Code", field: "code" },
     { title: "Number Of Dil'a", field: "numberOfDila" },
-    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="zone" actions={["View", "Edit"]} /> },
+    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="zone" actions={["View"]} /> },
   ];
   return (
     <div className="app">
@@ -107,13 +135,13 @@ export function Muqaamat() {
     { title: "Name", field: "name" },
     { title: "Zone", field: "zone" },
     { title: "Dila", field: "dila" },
-    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="muqaam" actions={["View", "Edit"]} /> },
+    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="muqaam" actions={["View"]} /> },
   ];
   return (
     <div className="app">
       <div className="container">
         <MaterialTable
-          title="Zones"
+          title="Muqaam"
           options={{ debounceInterval: 500, padding: "dense" }}
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
@@ -144,7 +172,7 @@ export function Dilaat() {
     { title: "Name", field: "name" },
     { title: "Zone", field: "zoneName" },
     { title: "Number Of Muqam", field: "numberOfMuqaam" },
-    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="dila" actions={["Edit"]} /> },
+    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="dila" actions={["View"]} /> },
   ];
   return (
     <div className="app">
@@ -225,7 +253,7 @@ export function Members() {
     { title: "Muqaam", field: "jamaatName" },
     { title: "Dil'a", field: "circuitName" },
     { title: "Category", field: "info.category" },
-    { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="member" actions={["Edit", "View"]} /> },
+    { title: "Actions", render: rowData => <LongMenu domainId={rowData.chandaNo} domain="member" actions={["View"]} /> },
   ];
 
   const [zones, setZones] = useState([{ key: "zone", value: "" }]);
@@ -285,29 +313,6 @@ export function Members() {
   return (
     <div className="app">
       <div className="container">
-        <div>
-          <select id="zones"  onChange={(e)=> {populateDilas(e.target.value)}}  className="my-select">
-            {
-              zones.map(z =>
-                <option  value={z.value}>{z.key}</option>
-              )
-            }
-          </select>
-            <select id="dilas" className="my-select" onChange={(e)=> {populateMuqaam(e.target.value)}} style={{display : "none"}}>
-              {
-                dilas.map(d =>
-                  <option value={d.value}>{d.key}</option>
-                )
-              }
-            </select>
-          <select id="muqam" className="my-select">
-              {
-                muqamis.map(d =>
-                  <option value={d.value}>{d.key}</option>
-                )
-              }
-          </select>
-        </div>
         <MaterialTable
           title="Members"
           columns={columns}

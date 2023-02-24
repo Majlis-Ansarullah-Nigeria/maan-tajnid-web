@@ -17,3 +17,9 @@
     top: -30pc;
     right: 24px;
 }
+input{
+    width: 19.5pc;
+    height: 3pc;
+    border-radius: 10px;
+    padding: 10px;
+}

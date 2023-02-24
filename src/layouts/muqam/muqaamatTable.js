@@ -31,8 +31,7 @@ import "./style.css"
 // Data
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-function Zones() {
+function Muqaam() {
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = projectsTableData();
 
@@ -54,7 +53,7 @@ function Zones() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Zones
+                  Muqaam
                 </MDTypography>
                 
               </MDBox>
@@ -76,4 +75,4 @@ function Zones() {
   );
 }
 
-export default Zones;
+export default Muqaam;
