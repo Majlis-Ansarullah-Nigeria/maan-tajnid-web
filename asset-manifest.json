@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/maan-tajnid-web/static/css/main.22800085.css",
+    "main.js": "/maan-tajnid-web/static/js/main.87750876.js",
+    "static/js/498.83c1df77.chunk.js": "/maan-tajnid-web/static/js/498.83c1df77.chunk.js",
+    "static/js/703.1a6ab2da.chunk.js": "/maan-tajnid-web/static/js/703.1a6ab2da.chunk.js",
+    "static/js/513.0df31fec.chunk.js": "/maan-tajnid-web/static/js/513.0df31fec.chunk.js",
+    "static/media/pattern-tree.svg": "/maan-tajnid-web/static/media/pattern-tree.431da656681abcdffac51bee04d7f581.svg",
+    "static/media/bg-sign-in-basic.jpeg": "/maan-tajnid-web/static/media/bg-sign-in-basic.f327db1d0e4b00ba3c81.jpeg",
+    "static/media/bg-profile.jpeg": "/maan-tajnid-web/static/media/bg-profile.af1219a742e09fc7b612.jpeg",
+    "static/media/bg-sign-up-cover.jpeg": "/maan-tajnid-web/static/media/bg-sign-up-cover.30c5950b22e74f0d82ba.jpeg",
+    "static/media/visa.png": "/maan-tajnid-web/static/media/visa.71c0d5e9e2aaee42e4c3.png",
+    "static/media/mastercard.png": "/maan-tajnid-web/static/media/mastercard.27fca3e7637a9458fb64.png",
+    "static/media/team-1.jpg": "/maan-tajnid-web/static/media/team-1.0fd36e0ee93dcfacdef8.jpg",
+    "static/media/bruce-mars.jpg": "/maan-tajnid-web/static/media/bruce-mars.8a606c4a6dab54c9ceff.jpg",
+    "static/media/team-2.jpg": "/maan-tajnid-web/static/media/team-2.13ae2ce3e12f4cfed420.jpg",
+    "static/media/team-3.jpg": "/maan-tajnid-web/static/media/team-3.0ef0be95e6850814c79e.jpg",
+    "static/media/team-4.jpg": "/maan-tajnid-web/static/media/team-4.85c82b6e60178804017f.jpg",
+    "static/media/github.svg": "/maan-tajnid-web/static/media/github.62a94bc83ef91aadf17b3d66c96048dd.svg",
+    "static/media/logo-slack.svg": "/maan-tajnid-web/static/media/logo-slack.d8feb9c5b2a92c377e8c5b7a10faabc9.svg",
+    "static/media/logo-xd.svg": "/maan-tajnid-web/static/media/logo-xd.77e7dd1528183ab292936e4f91241cf0.svg",
+    "static/media/logo-invision.svg": "/maan-tajnid-web/static/media/logo-invision.f3413d25dc0761bcc615835e48482191.svg",
+    "static/media/logo-spotify.svg": "/maan-tajnid-web/static/media/logo-spotify.3f055cde07c024fb2b73063b46416f1b.svg",
+    "static/media/logo-jira.svg": "/maan-tajnid-web/static/media/logo-jira.f9c1ddbe3e751a29bd16580977ade064.svg",
+    "static/media/logo-atlassian.svg": "/maan-tajnid-web/static/media/logo-atlassian.d92c4f81bb3efbf288b3ef71ce2fbfb0.svg",
+    "static/media/logo-asana.svg": "/maan-tajnid-web/static/media/logo-asana.5c9ced4f9006cfb2d4c10f905cf6d310.svg",
+    "index.html": "/maan-tajnid-web/index.html",
+    "main.22800085.css.map": "/maan-tajnid-web/static/css/main.22800085.css.map",
+    "main.87750876.js.map": "/maan-tajnid-web/static/js/main.87750876.js.map",
+    "498.83c1df77.chunk.js.map": "/maan-tajnid-web/static/js/498.83c1df77.chunk.js.map",
+    "703.1a6ab2da.chunk.js.map": "/maan-tajnid-web/static/js/703.1a6ab2da.chunk.js.map",
+    "513.0df31fec.chunk.js.map": "/maan-tajnid-web/static/js/513.0df31fec.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22800085.css",
+    "static/js/main.87750876.js"
+  ]
+}
