@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/maan-tajnid-web/static/css/main.22800085.css",
-    "main.js": "/maan-tajnid-web/static/js/main.87750876.js",
+    "main.js": "/maan-tajnid-web/static/js/main.f289bbc3.js",
     "static/js/498.83c1df77.chunk.js": "/maan-tajnid-web/static/js/498.83c1df77.chunk.js",
     "static/js/703.1a6ab2da.chunk.js": "/maan-tajnid-web/static/js/703.1a6ab2da.chunk.js",
     "static/js/513.0df31fec.chunk.js": "/maan-tajnid-web/static/js/513.0df31fec.chunk.js",
@@ -26,13 +26,13 @@
     "static/media/logo-asana.svg": "/maan-tajnid-web/static/media/logo-asana.5c9ced4f9006cfb2d4c10f905cf6d310.svg",
     "index.html": "/maan-tajnid-web/index.html",
     "main.22800085.css.map": "/maan-tajnid-web/static/css/main.22800085.css.map",
-    "main.87750876.js.map": "/maan-tajnid-web/static/js/main.87750876.js.map",
+    "main.f289bbc3.js.map": "/maan-tajnid-web/static/js/main.f289bbc3.js.map",
     "498.83c1df77.chunk.js.map": "/maan-tajnid-web/static/js/498.83c1df77.chunk.js.map",
     "703.1a6ab2da.chunk.js.map": "/maan-tajnid-web/static/js/703.1a6ab2da.chunk.js.map",
     "513.0df31fec.chunk.js.map": "/maan-tajnid-web/static/js/513.0df31fec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.22800085.css",
-    "static/js/main.87750876.js"
+    "static/js/main.f289bbc3.js"
   ]
 }
