@@ -32,14 +32,13 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import Header from "layouts/profile/components/Header";
-import PlatformSettings from "layouts/profile/components/PlatformSettings";
 import { useEffect, useState } from "react";
 import {fetchMemberInfo} from "gateway"
 
 function MemberInformation() {
     const [info, setInfo] = useState("");
     useEffect(async () => {
-        const memberId = location.href.split("=")[1];
+        const memberId = window.location.href.split("=")[1];
         const member = await fetchMemberInfo(memberId);
         setInfo(member.data)
     }, [])
