@@ -2,7 +2,7 @@ import MaterialTable from "material-table";
 import LongMenu from './components/ThreeDotsMenu/LongMenu';
 import "./style.css"
 import { useRef, useState, useEffect } from "react";
-
+let baseUrl = "http://nurudeenadeyemi-001-site1.ftempurl.com"
 export const createZoneFetch = async (bodyObj) => {
 
   const settings = {
@@ -14,7 +14,7 @@ export const createZoneFetch = async (bodyObj) => {
     }
 
   };
-  const postZone = await fetch("https://localhost:7078/api/Utility/zone", settings);
+  const postZone = await fetch(`${baseUrl}/api/Utility/zone`, settings);
   if (postZone.status == 400) {
     return false;
   }
@@ -31,7 +31,7 @@ export const createRole = async (bodyObj) => {
     }
 
   };
-  const postZone = await fetch("https://localhost:7078/api/User/Roles", settings);
+  const postZone = await fetch(`${baseUrl}/api/User/Roles`, settings);
   if (postZone.status == 400) {
     return false;
   }
@@ -46,7 +46,7 @@ export const updateZoneFetch = async (bodyObj, id) => {
       'Content-Type': 'application/json'
     }
   };
-  const postZone = await fetch(`https://localhost:7078/api/Utility/zones/${id}`, settings);
+  const postZone = await fetch(`${baseUrl}/api/Utility/zones/${id}`, settings);
   return postZone.json();
 }
 
@@ -59,36 +59,36 @@ export const updateDila = async (zoneId, dilaId) => {
       'Content-Type': 'application/json'
     }
   };
-  const postZone = await fetch(`https://localhost:7078/api/Utility/dila/${dilaId}?zoneId=${zoneId}`, settings);
+  const postZone = await fetch(`${baseUrl}/api/Utility/dila/${dilaId}?zoneId=${zoneId}`, settings);
   return postZone.json();
 }
 export const fetchZone = async (id) => {
 
-  const postZone = await fetch(`https://localhost:7078/api/Utility/zones/${id}`);
+  const postZone = await fetch(`${baseUrl}/api/Utility/zones/${id}`);
   return postZone.json();
 }
 
 
 export const fetchMemberInfo = async (id) => {
 
-  const postZone = await fetch(`https://localhost:7078/api/Member/${id}`);
+  const postZone = await fetch(`${baseUrl}/api/Member/${id}`);
   return postZone.json();
 }
 export const fetchMuqaam = async (id) => {
 
-  const postZone = await fetch(`https://localhost:7078/api/Utility/muqamaat/${id}`);
+  const postZone = await fetch(`${baseUrl}/api/Utility/muqamaat/${id}`);
   return postZone.json();
 }
 
 export const fetchZonesDropdown = async () => {
 
-  const postZone = await fetch(`https://localhost:7078/api/Utility/zones/nopagination`);
+  const postZone = await fetch(`${baseUrl}/api/Utility/zones/nopagination`);
   return postZone.json();
 }
 
 export const getDila = async (id) => {
 
-  const postZone = await fetch(`https://localhost:7078/api/Utility/dilaat/${id}`);
+  const postZone = await fetch(`${baseUrl}/api/Utility/dilaat/${id}`);
   return postZone.json();
 }
 
@@ -109,7 +109,7 @@ export function Zones() {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = "https://localhost:7078/api/Utility/zones?";
+            let url = `${baseUrl}/api/Utility/zones?`;
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -146,7 +146,7 @@ export function Muqaamat() {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = "https://localhost:7078/api/Utility/muqamaat?";
+            let url = `${baseUrl}/api/Utility/muqamaat?`;
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -183,7 +183,7 @@ export function Dilaat() {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = "https://localhost:7078/api/Utility/dilaat?";
+            let url = `${baseUrl}/api/Utility/dilaat?`;
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -218,7 +218,7 @@ export function DilaMuqaam(props) {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = `https://localhost:7078/api/Utility/dilaat/${props.dilaId}/muqamaat?`;
+            let url = `${baseUrl}/api/Utility/dilaat/${props.dilaId}/muqamaat?`;
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -240,7 +240,7 @@ export function DilaMuqaam(props) {
 }
 
 export function Members() {
-  let [url, setUrl] = useState(`https://localhost:7078/api/Member`);
+  let [url, setUrl] = useState(`{baseUrl}/api/Member`);
   const tableRef = useRef();
   const setSelects = () => {
     // tableRef.current.onQueryChange()
@@ -263,7 +263,7 @@ export function Members() {
 
 
   useEffect(async () => {
-    const zoneData = await fetch("https://localhost:7078/api/Utility/zones/nopagination").then(res => res.json()).then(data => data.data)
+    const zoneData = await fetch(`${baseUrl}/api/Utility/zones/nopagination`).then(res => res.json()).then(data => data.data)
     let test = []
     zoneData.forEach(z => {
       let data = {
@@ -278,9 +278,9 @@ export function Members() {
 
   const populateDilas = async(zoneId) => {
     setdilasDisplay(true);
-    setUrl(`https://localhost:7078/api/Member/zones/${zoneId}`)
+    setUrl(`{baseUrl}/api/Member/zones/${zoneId}`)
     tableRef.current.onQueryChange()
-    const dilaData = await fetch(`https://localhost:7078/api/Utility/dilaatbyzone/nopagination?zoneId=${zoneId}`).then(res => res.json()).then(data => data.data)
+    const dilaData = await fetch(`${baseUrl}/api/Utility/dilaatbyzone/nopagination?zoneId=${zoneId}`).then(res => res.json()).then(data => data.data)
     let test = []
     dilaData.forEach(z=> {
       let data = {
@@ -293,9 +293,9 @@ export function Members() {
   }
   const populateMuqaam = async(zoneId) => {
     setdilasDisplay(true);
-    setUrl(`https://localhost:7078/api/Member/zones/${zoneId}`)
+    setUrl(`${baseUrl}/api/Member/zones/${zoneId}`)
     tableRef.current.onQueryChange()
-    const dilaData = await fetch(`https://localhost:7078/api/Utility/dilaatbyzone/nopagination?zoneId=${zoneId}`).then(res => res.json()).then(data => data.data)
+    const dilaData = await fetch(`${baseUrl}/api/Utility/dilaatbyzone/nopagination?zoneId=${zoneId}`).then(res => res.json()).then(data => data.data)
     let test = []
     dilaData.forEach(z=> {
       let data = {
