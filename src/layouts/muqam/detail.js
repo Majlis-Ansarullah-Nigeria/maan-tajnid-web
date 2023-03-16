@@ -28,17 +28,23 @@ import Card from "@mui/material/Card";
 // MAAN Portal React components
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
-// Authentication layout components
+import { useEffect, useState } from 'react';
+import {fetchMuqaam} from 'gateway'
 
-// Images
-
-// Overview page components
-
-// Data
-// Images
-
-function Details() {
+function MuqamDetail() {
+  const muq = {
+    "name": "ABIDOGUN",
+    "dila": "null",
+    "zone": "null"
+  }
+  const id = window.location.href.split('=')[1];
+  const[muqaam, setMuqaam] = useState(muq)
+  useEffect(async () => {
+    console.log("esing")
+    const muqami = await fetchMuqaam(id);
+    setMuqaam(muqami.data)
+  }, [])
+  
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -57,24 +63,20 @@ function Details() {
             textAlign="center"
           >
             <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-              Dil'a Detail
+              Muqaam Detail
             </MDTypography>
           </MDBox>
           <MDBox pt={4} pb={3} px={3}>
             <MDBox component="form" role="form">
               <MDBox mb={2}>
-                <MDInput type="text" label="Name" value="Alakia" fullWidth />
+                <MDInput type="text" value={muqaam.name} fullWidth />
               </MDBox>
               <MDBox mb={2}>
-                <MDInput type="text" label="Zone" value="Monatan" fullWidth />
+                <MDInput type="text" value={muqaam.dila} fullWidth />
               </MDBox>
               <MDBox mb={2}>
-                <MDInput type="text" label="Dil'a" value="Monatan" fullWidth />
+                <MDInput type="text" value={muqaam.zone} fullWidth />
               </MDBox>
-              <MDBox mb={2}>
-                <MDInput type="text" label="Number of Members" value="500" fullWidth />
-              </MDBox>
-              
               <MDBox mt={4} mb={1}>
                 
               </MDBox>
@@ -86,4 +88,4 @@ function Details() {
   );
 }
 
-export default Details;
+export default MuqamDetail;

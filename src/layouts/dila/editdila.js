@@ -76,8 +76,9 @@ function EditDila() {
     const {
       target: { value },
     } = event;
-    setPersonName(value == undefined ? "ase" : value
-    );
+    console.log(value)
+    setPersonName(value);
+    console.log("personName", personName)
   };
 
   const zoneName = document.querySelector("#dilaName")
@@ -89,19 +90,19 @@ function EditDila() {
     }
     const ar = [
       {
-        "name" : "alimosho",
+        "id" : "alimosho",
         "zoneName" : "apata"
       },
       {
-        "name" : "alimosho",
+        "id" : "alimosho",
         "zoneName" : "apata"
       },
       {
-        "name" : "alimosho",
+        "id" : "alimosho",
         "zoneName" : "apata"
       },
       {
-        "name" : "alimosho",
+        "id" : "alimosho",
         "zoneName" : "apata"
       },
     ]
@@ -109,12 +110,13 @@ function EditDila() {
     const [zones, setZones] = useState(ar);
     const getDilaInfo = async () => {
         const dila = await getDila(id);
-        setPersonName(zone.data.zoneName)
+        setPersonName(dilaInfo.zoneName)
         setdilaInfo(dila.data)
         const zone = await fetchZonesDropdown();
+        console.log(zone.data)
         setZones(zone.data);
     }
-    // getDilaInfo();
+    getDilaInfo();
   const handleClick = async () => {
     if(dilaInfo.name != personName)
     {
@@ -156,15 +158,22 @@ function EditDila() {
                 <Select
                     labelId="demo-multiple-name-label"
                     id="demo-multiple-name"
-                    value={personName}
+                    // value={personName}
                     onChange={handleChange}
                     input={<OutlinedInput label="Name" />}
                     MenuProps={MenuProps}
         >
+          <MenuItem
+              key={personName}
+              // value={personName}
+              style={getStyles(personName, personName, theme)}
+            >
+              {personName}
+            </MenuItem>
           {zones.map((name) => (
             <MenuItem
-              key={name.name}
-              value={name.name}
+              key={name.id}
+              value={name.id}
               style={getStyles(name.name, personName, theme)}
             >
               {name.name}

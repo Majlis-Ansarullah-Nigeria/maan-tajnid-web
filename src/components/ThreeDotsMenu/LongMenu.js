@@ -50,7 +50,7 @@ export default function LongMenu(props) {
         }}
       >
         {props.actions.map((option) =>  {
-          return (<Link className='approveBtn' href={`/${props.domain}/edit?id=${props.domainId}`} key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+          return (<Link className='approveBtn' href={`/${props.domain}/view?id=${props.domainId}`} key={option} selected={option === 'Pyxis'} onClick={handleClose}>
           {option}
           </Link>)
         }

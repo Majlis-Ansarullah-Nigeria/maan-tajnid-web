@@ -40,12 +40,17 @@ import Dashboard from "layouts/dashboard";
 import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
+import MemberInformation from "layouts/profile/memberprofile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import Zones from "layouts/zone/zonetable";
 import Muqaamat from "layouts/muqam/muqaamatTable";
 import Dilaat from "layouts/dila/dilatable";
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import CreateRole from "layouts/identity/createrole";
+import SouthAmericaIcon from '@mui/icons-material/SouthAmerica';
+import GroupsIcon from '@mui/icons-material/Groups';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -62,6 +67,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Profile",
+    key: "prof",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/profile",
+    component: <MemberInformation />,
+  },
+  {
+    type: "collapse",
     name: "Notification",
     key: "not",
     icon: <Icon fontSize="small">dashboard</Icon>,
@@ -72,7 +85,7 @@ const routes = [
     type: "collapse",
     name: "Members",
     key: "members-list",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <GroupsIcon />,
     route: "/members",
     component: <Members />,
   },
@@ -80,7 +93,7 @@ const routes = [
     type: "collapse",
     name: "Zones",
     key: "zones-list",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <SouthAmericaIcon/>,
     route: "/zones",
     component: <Zones />,
   },
@@ -88,7 +101,7 @@ const routes = [
     type: "collapse",
     name: "Dilaat",
     key: "dilas-list",
-    icon: <Icon fontSize="small">table_view</Icon>,
+    icon: <ApartmentIcon />,
     route: "/dilaat",
     component: <Dilaat />,
   },
@@ -101,6 +114,14 @@ const routes = [
     component: <Muqaamat />,
   },
  
+  {
+    type: "collapse",
+    name: "Add Role",
+    key: "add-role",
+    icon: <AddBoxIcon/>,
+    route: "/authentication/addRole",
+    component: <CreateRole />,
+  },
   {
     type: "collapse",
     name: "Sign In",

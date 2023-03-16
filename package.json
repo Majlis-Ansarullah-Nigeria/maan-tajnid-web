@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Majlis-Ansarullah-Nigeria/maan-tajnid-web",
   "name": "material-dashboard-2-react",
   "version": "2.1.0",
   "private": true,
@@ -13,22 +14,23 @@
     "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
   },
   "engines": {
-    "node": "14 || 15 || 16",
+    "node": ">=16",
     "npm": ">=6"
   },
   "dependencies": {
     "@emotion/cache": "11.7.1",
-    "@emotion/react": "11.7.1",
-    "@emotion/styled": "11.6.0",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "5.4.1",
-    "@mui/material": "5.4.1",
+    "@mui/material": "^5.11.13",
     "@mui/styled-engine": "5.4.1",
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
     "chart.js": "3.4.1",
     "chroma-js": "2.4.2",
+    "gh-pages": "^5.0.0",
     "material-table": "^2.0.3",
     "prop-types": "15.8.1",
     "react": "17.0.2",
@@ -45,10 +47,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm install && npm install @mui/material @emotion/react @emotion/styled && npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
+    
   },
   "eslintConfig": {
     "extends": [

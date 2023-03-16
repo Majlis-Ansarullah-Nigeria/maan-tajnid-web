@@ -15,7 +15,6 @@ Coded by www.creative-tim.com
 
 // @mui material components
 // MAAN Portal React components
-import './style.css'
 import MDBox from "components/MDBox";
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -30,7 +29,7 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-import {createZoneFetch} from "../../gateway";
+import {createRole} from "../../gateway";
 import Grid from "@mui/material/Grid";
 // import { SnackbarProvider, useSnackbar } from 'notistack';
 // Authentication layout components
@@ -42,9 +41,9 @@ import Grid from "@mui/material/Grid";
 // Data
 // Images
 
-function CreateZone() {
-  const succesMessage = "Zone created successfully"
-  const errorMessage = "Zone with the same name or code already exist"
+function CreateRole() {
+  const succesMessage = "Role created successfully"
+  const errorMessage = "Role with the same name or code already exist"
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
 
@@ -79,29 +78,26 @@ const closeSuccessSB = () => setSuccessSB(false);
 
 
   const handleClick = async () => {
-    
-    const zoneName = document.querySelector("#zoneName")
-    const zoneCode = document.querySelector("#zoneCode")
-    const zoneNameValue = zoneName.value;
-    const zoneCodeValue = zoneCode.value;
-    const data = {
-      "name": zoneNameValue,
-      "code": zoneCodeValue
-    };
-    let createZoneResponse = await createZoneFetch(data);
-    console.log(createZoneResponse);
-    if(createZoneResponse.messages == undefined)
-    {
-      setErrorSB(true);
+        let name = document.querySelector("#name")
+        let email = document.querySelector("#email")
+        let desc = document.querySelector("#desc")
+        const data = {
+          "name": name.value,
+          "email": email.value,
+          "description": desc.value
+        };
+        let response = await createRole(data);
+        console.log(response);
+        if(response.messages == undefined)
+        {
+          setErrorSB(true);
+        }
+        else{
+          response.messages.forEach(element => {
+            setSuccessSB(true)
+          });
+        }
     }
-    else{
-      createZoneResponse.messages.forEach(element => {
-        setSuccessSB(true)
-      });
-    }
-   
-    
-  }
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -124,16 +120,19 @@ const closeSuccessSB = () => setSuccessSB(false);
             textAlign="center"
           >
             <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-              Create Zone
+              Create Role
             </MDTypography>
           </MDBox>
           <MDBox pt={4} pb={3} px={3}>
             <MDBox component="form" role="form">
               <MDBox mb={2}>
-                <MDInput type="text" label="Name" id="zoneName" fullWidth />
+                <MDInput type="text" id="name" label="Name" fullWidth />
               </MDBox>
               <MDBox mb={2}>
-                <MDInput type="text" label="Code" id="zoneCode" fullWidth />
+                <MDInput type="text" id="email" label="Email" fullWidth />
+              </MDBox>
+              <MDBox mb={2}>
+                <MDInput type="text" id="desc" label="Description" fullWidth />
               </MDBox>
               
               <MDBox mt={4} mb={1}>
@@ -149,4 +148,4 @@ const closeSuccessSB = () => setSuccessSB(false);
   );
 }
 
-export default CreateZone;
+export default CreateRole;

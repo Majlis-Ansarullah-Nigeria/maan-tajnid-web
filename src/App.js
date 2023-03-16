@@ -37,7 +37,7 @@ import themeRTL from "assets/theme/theme-rtl";
 // MAAN Portal React Dark Mode themes
 import themeDark from "assets/theme-dark";
 import themeDarkRTL from "assets/theme-dark/theme-rtl";
-
+import MemberInformation from "layouts/profile/memberprofile";
 // RTL plugins
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
@@ -58,6 +58,7 @@ import CreateZone from "layouts/zone/createzone";
 import EditZone from "layouts/zone/editzone";
 import EditDila from "layouts/dila/editdila";
 import Zone from "layouts/zone/zoneview";
+import MuqamDetail from "layouts/muqam/detail";
 
 
 export default function App() {
@@ -202,10 +203,12 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route exact path="/zone/create" element={<CreateZone/>} key={"create-zone"} />;
-        <Route exact path="/zone/edit" element={<EditZone/>} key={"edit-zone"} />;
+        <Route exact path="/zone/view" element={<EditZone/>} key={"edit-zone"} />;
         <Route exact path="/zone" element={<Zone/>} key={"zone"} />;
-        <Route exact path="/dila/edit" element={<EditDila/>} key={"edit-dila"} />;
+        <Route exact path="/dila/view" element={<EditDila/>} key={"edit-dila"} />;
         <Route exact path="/zone" element={<Zone/>} key={"zone"} />;
+        <Route exact path="/muqaam/view" element={<MuqamDetail/>} key={"view-muqam"} />;
+        <Route exact path="/member/view" element={<MemberInformation/>} key={"view-member"} />;
       </Routes>
     </ThemeProvider>
   );

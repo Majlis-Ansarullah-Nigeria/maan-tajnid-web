@@ -43,8 +43,8 @@ import Grid from "@mui/material/Grid";
 // Images
 
 function EditZone() {
-  const succesMessage = "Zone created successfully"
-  const errorMessage = "Zone with the same name or code already exist"
+  const succesMessage = "Zone updated successfully"
+  const errorMessage = "Error occured"
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
 
@@ -88,7 +88,6 @@ const closeSuccessSB = () => setSuccessSB(false);
     const [zone, setZone] = useState(initInfo);
     const getZone = async () => {
       const zone = await fetchZone(id);
-      console.log(zone);
       setZone(zone.data)
     }
     getZone();
@@ -96,15 +95,15 @@ const closeSuccessSB = () => setSuccessSB(false);
 
   const handleClick = async () => {
     setSuccessSB(true)
-    console.log("trrrrrrrrrrrrrrrr")
-    // const zoneNameValue = zoneName.value;
-    // const zoneCodeValue = zoneCode.value;
-    // const data = {
-    //   "name": zoneNameValue,
-    //   "code": zoneCodeValue
-    // };
-    // let updateZoneResponse = await updateZoneFetch(data, id);
-    // console.log(updateZoneResponse);
+    console.clear("trrrrrrrrrrrrrrrr")
+    const zoneNameValue = zoneName.value;
+    const zoneCodeValue = zoneCode.value;
+    const data = {
+      "name": zoneNameValue,
+      "code": zoneCodeValue
+    };
+    let updateZoneResponse = await updateZoneFetch(data, id);
+    console.log(updateZoneResponse);
     
   }
 
@@ -137,10 +136,10 @@ const closeSuccessSB = () => setSuccessSB(false);
           <MDBox pt={4} pb={3} px={3}>
             <MDBox component="form" role="form">
               <MDBox mb={2}>
-                <MDInput type="text" label="Name" id="zoneName" value={zone.name} fullWidth />
+                <input type={"text"} id="zoneName" defaultValue={zone.name} />
               </MDBox>
               <MDBox mb={2}>
-                <MDInput type="text" label="Code" id="zoneCode" value={zone.code} fullWidth />
+                <input type={"text"} id="zoneCode" defaultValue={zone.code} />
               </MDBox>
               
               <MDBox mt={4} mb={1}>
