@@ -1,0 +1,46 @@
+trigger:
+- master
+
+variables:
+  # Web app name
+  webAppNameStaging: 'rafeFrontendWebApp-staging'
+  webAppNameProduction: 'rafeFrontendWebApp-production'
+
+  # Environment name
+  environmentNameStaging: 'staging'
+  environmentNameProduction: 'production'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+  System.Debug: true
+stages:
+- stage: Build
+  displayName: Build stage
+  pool:
+   vmImage: $(vmImageName)
+   
+  jobs:  
+  - job: Build_Staging
+    displayName: Build Staging
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '>=16.x'
+        displayName: 'Install Node.js'
+      
+      
+      - script: |
+         npm install -g --force
+         npm install "@material-ui/styles" --force 
+         npm run build
+        displayName: 'npm build'
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)/build'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: $(System.DefaultWorkingDirectory)/build
+          artifact: 'drop'
+          publishLocation: 'pipeline'
