@@ -240,7 +240,7 @@ export function DilaMuqaam(props) {
 }
 
 export function Members() {
-  let [url, setUrl] = useState(`{baseUrl}/api/Member`);
+  let [url, setUrl] = useState(`${baseUrl}/api/Member`);
   const tableRef = useRef();
   const setSelects = () => {
     // tableRef.current.onQueryChange()
