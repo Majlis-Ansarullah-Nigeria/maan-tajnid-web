@@ -28,19 +28,11 @@ import {fetchZone, updateZoneFetch} from "../../gateway";
 import Card from "@mui/material/Card";
 // MAAN Portal React components
 import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import { useState } from "react";
 import MDSnackbar from "components/MDSnackbar";
 import Grid from "@mui/material/Grid";
-// Authentication layout components
 
-// Images
-
-// Overview page components
-
-// Data
-// Images
 
 function EditZone() {
   const succesMessage = "Zone updated successfully"
@@ -95,7 +87,7 @@ const closeSuccessSB = () => setSuccessSB(false);
 
   const handleClick = async () => {
     setSuccessSB(true)
-    console.clear("trrrrrrrrrrrrrrrr")
+    console.clear()
     const zoneNameValue = zoneName.value;
     const zoneCodeValue = zoneCode.value;
     const data = {

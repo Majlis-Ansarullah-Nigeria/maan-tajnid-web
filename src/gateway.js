@@ -59,8 +59,9 @@ export const updateDila = async (zoneId, dilaId) => {
       'Content-Type': 'application/json'
     }
   };
-  const postZone = await fetch(`${baseUrl}/api/Utility/dila/${dilaId}?zoneId=${zoneId}`, settings);
-  return postZone.json();
+  const dilaupdate = await fetch(`${baseUrl}/api/Utility/dila/${dilaId}?zoneId=${zoneId}`, settings);
+  console.log(dilaupdate);
+  return dilaupdate.json();
 }
 export const fetchZone = async (id) => {
 
@@ -252,7 +253,7 @@ export function Members() {
     { title: "Name", render: rowData => (`${rowData.firstName} ${rowData.surname}`) },
     { title: "Muqaam", field: "jamaatName" },
     { title: "Dil'a", field: "circuitName" },
-    { title: "Category", field: "info.category" },
+    { title: "Category", field: "category" },
     { title: "Actions", render: rowData => <LongMenu domainId={rowData.chandaNo} domain="member" actions={["View"]} /> },
   ];
 

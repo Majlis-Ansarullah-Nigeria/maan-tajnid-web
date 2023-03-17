@@ -90,7 +90,7 @@ function Overview() {
                     color: "instagram",
                   },
                 ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
+                action={{ route: "", tooltip: "" }}
                 shadow={false}
               />
               <Divider orientation="vertical" sx={{ mx: 0 }} />

@@ -16,15 +16,11 @@ Coded by www.creative-tim.com
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
-
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import "./style.css"
 
 // MAAN Portal React components
 import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+
 
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -40,13 +36,14 @@ function MemberInformation() {
     useEffect(async () => {
         const memberId = window.location.href.split("=")[1];
         const member = await fetchMemberInfo(memberId);
+        console.log(member.data);
         setInfo(member.data)
     }, [])
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header>
+      <Header info={{name : `${info.firstName} ${info.surname}`, role : "Member"}}>
         <MDBox mt={5} mb={3}>
           <Grid container spacing={1}>
           <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
@@ -56,7 +53,6 @@ function MemberInformation() {
                     info != "" &&
                     <ProfileInfoCard
                     title="profile information"
-                    description="Ahmadiyya Muslim Jamaat Member"
                     info={{
                     fullName: `${info.firstName} ${info.surname}`,
                     mobile: info.phoneNo,
@@ -67,31 +63,32 @@ function MemberInformation() {
                     social={[
                   
                 ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
+                action={{ route: "", tooltip: "" }}
                 shadow={false}
+
                 />
               }
               
-              <Divider orientation="vertical" sx={{ mx: 0 }} />
+              {/* <Divider orientation="vertical" sx={{ mx: 0 }} /> */}
             </Grid>
           <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-              <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
+              {/* <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} /> */}
 
               {
                     info != "" &&
                     <ProfileInfoCard
                     title="Jamaat information"
-                    description="Ahmadiyya Muslim Jamaat Member"
                     info={{
-                        Muqaaam : info.jamaatName,
+                        Muqaaam : `${info.jamaatName}`,
                         Dila : info.circuitName
                     }}
 
                     social={[
                   
                 ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
+                action={{ route: "", tooltip: "" }}
                 shadow={false}
+                className="jamatInfo"
                 />
               }
               

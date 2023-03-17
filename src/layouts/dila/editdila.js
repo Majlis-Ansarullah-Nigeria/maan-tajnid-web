@@ -16,7 +16,6 @@ Coded by www.creative-tim.com
 // @mui material components
 // MAAN Portal React components
 import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import { useTheme } from '@mui/material/styles';
 import './style.css'
 import MDBox from "components/MDBox";
@@ -24,39 +23,22 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import {fetchZonesDropdown, getDila, updateDila} from "../../gateway";
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 // react-router-dom components
 
 // @mui material components
 import Card from "@mui/material/Card";
+import MDSnackbar from "components/MDSnackbar";
+import Grid from "@mui/material/Grid";
+
 // MAAN Portal React components
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
-import MultipleSelect from "components/Dropdown";
 import { useState } from 'react';
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import MuqaamDilaTable from "examples/Tables/DataTable/dilaMuqaam";
 import InputLabel from '@mui/material/InputLabel';
 
-// Authentication layout components
-
-// Images
-
-// Overview page components
-
-// Data
-// Images
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -69,20 +51,42 @@ const MenuProps = {
 };
 function EditDila() {
 
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState("");
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    console.log(value)
-    setPersonName(value);
-    console.log("personName", personName)
-  };
+  const succesMessage = "Dila updated successfully"
+  const errorMessage = "Dila update fail! try again"
+  const [successSB, setSuccessSB] = useState(false);
+  const [errorSB, setErrorSB] = useState(false);
 
-  const zoneName = document.querySelector("#dilaName")
-    const zoneCode = document.querySelector("#zoneName")
+const closeErrorSB = () => setErrorSB(false);
+const closeSuccessSB = () => setSuccessSB(false);
+  const renderSuccessSB = (
+    <MDSnackbar
+      color="success"
+      icon="check"
+      title="Majlis Ansarullah"
+      content= {succesMessage}
+      dateTime="11 mins ago"
+      open={successSB}
+      onClose={closeSuccessSB}
+      close={closeSuccessSB}
+      bgWhite
+    />
+  );
+  const renderErrorSB = (
+    <MDSnackbar
+      color="error"
+      icon="warning"
+      title="Majlis Ansarullah"
+      content= {errorMessage}
+      dateTime="11 mins ago"
+      open={errorSB}
+      onClose={closeErrorSB}
+      close={closeErrorSB}
+      bgWhite
+    />
+  );
+
+    const zone = document.querySelector("#zoneName")
     const id = window.location.href.split("=")[1];
     const data = {
         name : "",
@@ -110,25 +114,33 @@ function EditDila() {
     const [zones, setZones] = useState(ar);
     const getDilaInfo = async () => {
         const dila = await getDila(id);
-        setPersonName(dilaInfo.zoneName)
         setdilaInfo(dila.data)
         const zone = await fetchZonesDropdown();
-        console.log(zone.data)
         setZones(zone.data);
     }
     getDilaInfo();
   const handleClick = async () => {
-    if(dilaInfo.name != personName)
-    {
-      const update = await updateDila(personName, id);
-      console.log(update);
-    }
+    const zoneId = zone.options[zone.selectedIndex].value;
+    const dilaId = dilaInfo.id;
+      const update = await updateDila(zoneId, dilaId);
+      if(update.succeeded)
+      {
+        setSuccessSB(true)
+        
+      }
+      else{
+        setErrorSB(true);
+      }
   }
 
   const { columns, rows } = authorsTableData();
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <Grid item xs={12} sm={6} lg={3}>
+        {renderSuccessSB}
+        {renderErrorSB}
+      </Grid>
       <MDBox mb={2} />
       <div className="cont">
         <div className="card-container">
@@ -155,31 +167,13 @@ function EditDila() {
                 </MDBox>
                 <MDBox mb={2}>
                 <InputLabel id="demo-multiple-name-label">Zone</InputLabel>
-                <Select
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
-                    // value={personName}
-                    onChange={handleChange}
-                    input={<OutlinedInput label="Name" />}
-                    MenuProps={MenuProps}
-        >
-          <MenuItem
-              key={personName}
-              // value={personName}
-              style={getStyles(personName, personName, theme)}
-            >
-              {personName}
-            </MenuItem>
-          {zones.map((name) => (
-            <MenuItem
-              key={name.id}
-              value={name.id}
-              style={getStyles(name.name, personName, theme)}
-            >
-              {name.name}
-            </MenuItem>
-          ))}
-        </Select>
+                <select id="zoneName" className='dp'>
+                    {zones.map((zo) => (
+                      <option value={zo.id}>
+                        {zo.name}
+                      </option>
+                      ))}
+                  </select>
                 </MDBox>
                 
                 <MDBox mt={4} mb={1}>

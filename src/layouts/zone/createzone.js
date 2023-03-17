@@ -32,15 +32,6 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import {createZoneFetch} from "../../gateway";
 import Grid from "@mui/material/Grid";
-// import { SnackbarProvider, useSnackbar } from 'notistack';
-// Authentication layout components
-
-// Images
-
-// Overview page components
-
-// Data
-// Images
 
 function CreateZone() {
   const succesMessage = "Zone created successfully"
