@@ -20,7 +20,7 @@ const displaySelect = () => {
         
     }
     const displayZone = () => {
-        display("https://localhost:7078/api/Utility/zones/nopagination", zones)
+        display("http://nurudeenadeyemi-001-site1.ftempurl.com/api/Utility/zones/nopagination", zones)
     }
     displayZone();
     // zones.addEventListener("change", (e) => {
