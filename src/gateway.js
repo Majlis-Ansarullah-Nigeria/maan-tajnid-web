@@ -1,6 +1,8 @@
 import MaterialTable from "material-table";
 import LongMenu from './components/ThreeDotsMenu/LongMenu';
 import "./style.css"
+import Button from '@mui/material/Button';
+
 import { useRef, useState, useEffect } from "react";
 let baseUrl = "http://nurudeenadeyemi-001-site1.ftempurl.com"
 export const createZoneFetch = async (bodyObj) => {
@@ -206,9 +208,20 @@ export function Dilaat() {
 }
 
 export function DilaMuqaam(props) {
-
+  // let handleClick = () => {
+  //   viewMembers()
+  // }
   const columns = [
     { title: "Name", field: "name" },
+    {title: "Members", field:"name", render:rowData => {
+      
+      return (<Button variant="contained"
+         style={{
+          backgroundColor: "green",
+      }} onClick={() => viewMembers(props.id, props.level)}>
+          Members
+      </Button>)
+    }},
   ];
   return (
     <div className="app">
@@ -219,7 +232,7 @@ export function DilaMuqaam(props) {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = `${baseUrl}/api/Utility/dilaat/${props.dilaId}/muqamaat?`;
+            let url = `${baseUrl}/api/Utility/${props.level}/${props.id}/${props.sublevel}?`;
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -239,9 +252,9 @@ export function DilaMuqaam(props) {
     </div>
   );
 }
-
 export function Members() {
   let [url, setUrl] = useState(`${baseUrl}/api/Member`);
+  
   const tableRef = useRef();
   const setSelects = () => {
     // tableRef.current.onQueryChange()
@@ -342,3 +355,57 @@ export function Members() {
 
 }
 
+export function MembersByLevel(props) {
+  
+  let [url, setUrl] = useState(`${baseUrl}/api/Member/${props.level}/${props.levelId}`);
+  
+  const tableRef = useRef();
+  
+  const columns = [
+    { title: "Member Number", field: "chandaNo" },
+    { title: "Name", render: rowData => (`${rowData.firstName} ${rowData.surname}`) },
+    { title: "Muqaam", field: "jamaatName" },
+    { title: "Dil'a", field: "circuitName" },
+    { title: "Category", field: "category" },
+    { title: "Actions", render: rowData => <LongMenu domainId={rowData.chandaNo} domain="member" actions={["View"]} /> },
+  ];
+
+
+  return (
+    <div className="app">
+      <div className="container">
+        <MaterialTable
+          title="Members"
+          columns={columns}
+          options={{ debounceInterval: 500, padding: "dense" }}
+          tableRef={tableRef}
+          data={(query) => new Promise((resolve, reject) => {
+            let webPath = url + `?PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
+            if (query.search) {
+              webPath += `&Keyword=${query.search}`
+            }
+            fetch(webPath).then(resp => resp.json()).then(resp => {
+              localStorage.removeItem("url");
+              console.log(webPath);
+              localStorage.removeItem("levelId")
+              localStorage.removeItem("level")
+              resolve({
+                data: resp.data.data,
+                page: query.page,
+                totalCount: resp.data.totalCount
+              })
+            })
+          })
+          }
+        />
+      </div>
+    </div>
+  );
+
+}
+
+export const viewMembers = async (id, level) => {
+  localStorage.setItem("level", level);
+  localStorage.setItem("levelId", id);
+  window.location.href = "/members"
+}

@@ -31,7 +31,7 @@ import MDInput from "components/MDInput";
 import MDPagination from "components/MDPagination";
 
 // MAAN Portal React example components
-import {Members} from "../../../gateway"
+import {Members, MembersByLevel} from "../../../gateway"
 
 function MemberTable({
   entriesPerPage,
@@ -138,7 +138,8 @@ function MemberTable({
   } else {
     entriesEnd = pageSize * (pageIndex + 1);
   }
-
+const level = localStorage.getItem("level")
+const levelId = localStorage.getItem("levelId")
   return (
     <TableContainer sx={{ boxShadow: "none" }}>
       {entriesPerPage || canSearch ? (
@@ -177,7 +178,7 @@ function MemberTable({
           )}
         </MDBox>
       ) : null}
-      <Members/>
+    { (level === undefined || level === null) ? <Members/> : <MembersByLevel level={level} levelId={levelId}/>}
     </TableContainer>
   );
 }

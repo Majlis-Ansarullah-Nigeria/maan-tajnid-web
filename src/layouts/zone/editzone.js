@@ -15,12 +15,14 @@ Coded by www.creative-tim.com
 
 // @mui material components
 // MAAN Portal React components
+import authorsTableData from "layouts/tables/data/authorsTableData";
 import './style.css'
 import MDBox from "components/MDBox";
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import {fetchZone, updateZoneFetch} from "../../gateway";
+import {fetchZone, updateZoneFetch, viewMembers} from "../../gateway";
+import SubLevelByLevelTable from "examples/Tables/DataTable/subLevelByLevel";
 
 // react-router-dom components
 
@@ -55,6 +57,7 @@ const closeSuccessSB = () => setSuccessSB(false);
       bgWhite
     />
   );
+  const { columns, rows } = authorsTableData();
   const renderErrorSB = (
     <MDSnackbar
       color="error"
@@ -98,8 +101,6 @@ const closeSuccessSB = () => setSuccessSB(false);
     console.log(updateZoneResponse);
     
   }
-
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -108,7 +109,8 @@ const closeSuccessSB = () => setSuccessSB(false);
         {renderSuccessSB}
         {renderErrorSB}
       </Grid>
-      <div className="card-container">
+      <div className="cont">
+        <div className="card-container">
       <Card>
           <MDBox
             variant="gradient"
@@ -138,10 +140,24 @@ const closeSuccessSB = () => setSuccessSB(false);
                 <MDButton variant="gradient" color="info" fullWidth onClick={handleClick}>
                   Save Changes
                 </MDButton>
+                <MDButton variant="gradient" color="info" fullWidth onClick={() => viewMembers(id, "zones")}>
+                  View Members
+                </MDButton>
               </MDBox>
             </MDBox>
           </MDBox>
         </Card>
+        </div>
+        <SubLevelByLevelTable
+          table={{ columns, rows }}
+          isSorted={false}
+          entriesPerPage={false}
+          showTotalEntries={false}
+          noEndBorder
+          dilaId = {id}
+          level = "zones"
+          sublevel = "dilaat"
+        />
       </div>
     </DashboardLayout>
   );

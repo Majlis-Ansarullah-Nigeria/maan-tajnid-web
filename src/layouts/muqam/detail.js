@@ -20,7 +20,7 @@ import MDBox from "components/MDBox";
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
+import MDButton from "components/MDButton";
 // react-router-dom components
 
 // @mui material components
@@ -29,7 +29,7 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import { useEffect, useState } from 'react';
-import {fetchMuqaam} from 'gateway'
+import {fetchMuqaam, viewMembers} from 'gateway'
 
 function MuqamDetail() {
   const muq = {
@@ -78,7 +78,9 @@ function MuqamDetail() {
                 <MDInput type="text" value={muqaam.zone} fullWidth />
               </MDBox>
               <MDBox mt={4} mb={1}>
-                
+              <MDButton variant="gradient" color="info" fullWidth onClick={() => viewMembers(id, "muqaam")}>
+                      View Members
+                  </MDButton>
               </MDBox>
             </MDBox>
           </MDBox>

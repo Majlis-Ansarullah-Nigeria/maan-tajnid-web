@@ -22,7 +22,7 @@ import MDBox from "components/MDBox";
 // MAAN Portal React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import {fetchZonesDropdown, getDila, updateDila} from "../../gateway";
+import {fetchZonesDropdown, getDila, updateDila, viewMembers} from "../../gateway";
 // react-router-dom components
 
 // @mui material components
@@ -36,7 +36,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import { useState } from 'react';
 import authorsTableData from "layouts/tables/data/authorsTableData";
-import MuqaamDilaTable from "examples/Tables/DataTable/dilaMuqaam";
+import SubLevelByLevelTable from "examples/Tables/DataTable/subLevelByLevel";
 import InputLabel from '@mui/material/InputLabel';
 
 const ITEM_HEIGHT = 48;
@@ -180,18 +180,23 @@ const closeSuccessSB = () => setSuccessSB(false);
                   <MDButton variant="gradient" color="info" fullWidth onClick={handleClick}>
                     Save Changes
                   </MDButton>
+                  <MDButton variant="gradient" color="info" fullWidth onClick={() => viewMembers(id, "dilaat")}>
+                      View Members
+                  </MDButton>
                 </MDBox>
               </MDBox>
             </MDBox>
           </Card>
         </div>
-        <MuqaamDilaTable
+        <SubLevelByLevelTable
           table={{ columns, rows }}
           isSorted={false}
           entriesPerPage={false}
           showTotalEntries={false}
           noEndBorder
           dilaId = {id}
+          level = "dilaat"
+          sublevel = "muqamaat"
         />
       </div>
       

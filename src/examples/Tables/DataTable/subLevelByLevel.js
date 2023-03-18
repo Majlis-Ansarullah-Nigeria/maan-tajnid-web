@@ -33,7 +33,7 @@ import MDPagination from "components/MDPagination";
 // MAAN Portal React example components
 import {DilaMuqaam} from "../../../gateway"
 
-function MuqaamDilaTable({
+function SubLevelByLevelTable({
   entriesPerPage,
   canSearch,
   showTotalEntries,
@@ -41,7 +41,9 @@ function MuqaamDilaTable({
   pagination,
   isSorted,
   noEndBorder,
-  dilaId
+  dilaId,
+  level,
+  sublevel
 }) {
   const defaultValue = entriesPerPage.defaultValue ? entriesPerPage.defaultValue : 10;
   const entries = entriesPerPage.entries
@@ -178,13 +180,16 @@ function MuqaamDilaTable({
           )}
         </MDBox>
       ) : null}
-      <DilaMuqaam dilaId={dilaId}/>
+      <DilaMuqaam id={dilaId}
+        level= {level}
+        sublevel = {sublevel}
+      />
     </TableContainer>
   );
 }
 
 // Setting default values for the props of DataTable
-MuqaamDilaTable.defaultProps = {
+SubLevelByLevelTable.defaultProps = {
   entriesPerPage: { defaultValue: 10, entries: [5, 10, 15, 20, 25] },
   canSearch: false,
   showTotalEntries: true,
@@ -194,7 +199,7 @@ MuqaamDilaTable.defaultProps = {
 };
 
 // Typechecking props for the DataTable
-MuqaamDilaTable.propTypes = {
+SubLevelByLevelTable.propTypes = {
   entriesPerPage: PropTypes.oneOfType([
     PropTypes.shape({
       defaultValue: PropTypes.number,
@@ -222,4 +227,4 @@ MuqaamDilaTable.propTypes = {
   noEndBorder: PropTypes.bool,
 };
 
-export default MuqaamDilaTable;
+export default SubLevelByLevelTable;
