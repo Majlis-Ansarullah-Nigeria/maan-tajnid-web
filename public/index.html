@@ -27,5 +27,20 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      const isLogin = localStorage.getItem("isLogin");
+      if(!isLogin)
+      {
+         if (!location.href.includes("/authentication/sign-in")) {
+          location.href = "/authentication/sign-in";
+        }
+      }
+      else{
+        if (location.href.includes("/authentication/sign-in")) {
+          history.deleteAll() 
+          localStorage.removeItem("isLogin")
+        }
+      }
+    </script>
   </body>
 </html>

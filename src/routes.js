@@ -56,7 +56,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import Icon from "@mui/material/Icon";
 import Members from "layouts/members/memberlist";
 
-const routes = [
+let routes = [
   {
     type: "collapse",
     name: "Dashboard",
@@ -75,69 +75,94 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Notification",
-    key: "not",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/notification",
-    component: <Notifications />,
-  },
-  {
-    type: "collapse",
     name: "Members",
     key: "members-list",
     icon: <GroupsIcon />,
     route: "/members",
     component: <Members />,
   },
-  {
-    type: "collapse",
-    name: "Zones",
-    key: "zones-list",
-    icon: <SouthAmericaIcon/>,
-    route: "/zones",
-    component: <Zones />,
-  },
-  {
-    type: "collapse",
-    name: "Dilaat",
-    key: "dilas-list",
-    icon: <ApartmentIcon />,
-    route: "/dilaat",
-    component: <Dilaat />,
-  },
-  {
-    type: "collapse",
-    name: "Muqaamat",
-    key: "muqam-list",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/muqaamat",
-    component: <Muqaamat />,
-  },
- 
-  {
-    type: "collapse",
-    name: "Add Role",
-    key: "add-role",
-    icon: <AddBoxIcon/>,
-    route: "/authentication/addRole",
-    component: <CreateRole />,
-  },
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
-  },
 ];
+let division = localStorage.getItem("division");
+ if(division === "dilaat")
+{
+  let dilaatView = [
+    {
+      type: "collapse",
+      name: "Muqaamat",
+      key: "muqam-list",
+      icon: <Icon fontSize="small">table_view</Icon>,
+      route: "/muqaamat",
+      component: <Muqaamat />,
+    },
+  ]
+  routes = [...routes, ...dilaatView]
+}
+else if(division === "national"){
+  let nationalView = [
+    {
+      type: "collapse",
+      name: "Dilaat",
+      key: "dilas-list",
+      icon: <ApartmentIcon />,
+      route: "/dilaat",
+      component: <Dilaat />,
+    },
+    {
+      type: "collapse",
+      name: "Zones",
+      key: "zones-list",
+      icon: <SouthAmericaIcon/>,
+      route: "/zones",
+      component: <Zones />,
+    },
+    {
+      type: "collapse",
+      name: "Add Role",
+      key: "add-role",
+      icon: <AddBoxIcon/>,
+      route: "/authentication/addRole",
+      component: <CreateRole />,
+    },
+    {
+      type: "collapse",
+      name: "Muqaamat",
+      key: "muqam-list",
+      icon: <Icon fontSize="small">table_view</Icon>,
+      route: "/muqaamat",
+      component: <Muqaamat />,
+    },
+    {
+      type: "collapse",
+      name: "Add User",
+      key: "sign-up",
+      icon: <Icon fontSize="small">assignment</Icon>,
+      route: "/authentication/sign-up",
+      component: <SignUp />,
+    },
+  ]
+  routes = [...routes, ...nationalView]
+}
+else if(division === "zones"){
+  let nationalView = [
+    {
+      type: "collapse",
+      name: "Dilaat",
+      key: "dilas-list",
+      icon: <ApartmentIcon />,
+      route: "/dilaat",
+      component: <Dilaat />,
+    },
+  ]
+  routes = [...routes, ...nationalView]
+}
+
+routes = [...routes, {
+  type: "collapse",
+  name: "Log out",
+  key: "sign-in",
+  icon: <Icon fontSize="small">login</Icon>,
+  route: "/authentication/sign-in",
+  component: <SignIn />,
+},]
 
 export default routes;

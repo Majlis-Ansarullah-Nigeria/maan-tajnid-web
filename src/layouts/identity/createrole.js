@@ -31,6 +31,8 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import {createRole} from "../../gateway";
 import Grid from "@mui/material/Grid";
+import InputLabel from '@mui/material/InputLabel';
+import {postLevel} from "gateway";
 // import { SnackbarProvider, useSnackbar } from 'notistack';
 // Authentication layout components
 
@@ -75,17 +77,26 @@ const closeSuccessSB = () => setSuccessSB(false);
       bgWhite
     />
   );
-
+  const [posts, setPosts] = useState([]);
+  let dropdowns = async () => {
+    let p = await postLevel()
+    setPosts(p)
+  }
+  dropdowns();
 
   const handleClick = async () => {
         let name = document.querySelector("#name")
         let email = document.querySelector("#email")
         let desc = document.querySelector("#desc")
+        const po = document.querySelector("#post")
+        const selectedPost = po.options[po.selectedIndex].value;
         const data = {
           "name": name.value,
           "email": email.value,
-          "description": desc.value
+          "description": desc.value,
+          "postLevel": Number.parseInt(selectedPost)
         };
+        console.log(data)
         let response = await createRole(data);
         console.log(response);
         if(response.messages == undefined)
@@ -134,7 +145,16 @@ const closeSuccessSB = () => setSuccessSB(false);
               <MDBox mb={2}>
                 <MDInput type="text" id="desc" label="Description" fullWidth />
               </MDBox>
-              
+              <MDBox mb={2}>
+                <InputLabel id="demo-multiple-name-label">Post Level</InputLabel>
+                <select id="post" className='sel'>
+                    {
+                      posts &&
+                      posts.map((po) => <option key={po.value} value={po.value}>{po.name}</option>)
+                      }
+                  </select>
+                
+                </MDBox>
               <MDBox mt={4} mb={1}>
                 <MDButton variant="gradient" color="info" fullWidth  onClick={handleClick}>
                   Submit

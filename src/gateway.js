@@ -39,6 +39,61 @@ export const createRole = async (bodyObj) => {
   }
   return postZone.json();
 }
+export const login = async (bodyObj) => {
+
+  const settings = {
+
+    method: "POST",
+    body: JSON.stringify(bodyObj),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+
+  };
+
+  const response = await fetch(`${baseUrl}/api/User/login`, settings);
+  if (response.status == 400) {
+    return false;
+  }
+  
+  return response.json();
+}
+export const profileUser = async (bodyObj) => {
+
+  const settings = {
+
+    method: "POST",
+    body: JSON.stringify(bodyObj),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+
+  };
+
+  const postZone = await fetch(`${baseUrl}/api/User/ProfileUser`, settings);
+  if (postZone.status == 400) {
+    return false;
+  }
+  return postZone.json();
+}
+export const newUser = async (bodyObj) => {
+
+  const settings = {
+
+    method: "POST",
+    body: JSON.stringify(bodyObj),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+
+  };
+
+  const postZone = await fetch(`${baseUrl}/api/User/login`, settings);
+  if (postZone.status == 400) {
+    return false;
+  }
+  return postZone.json();
+}
 export const updateZoneFetch = async (bodyObj, id) => {
   const settings = {
 
@@ -88,6 +143,16 @@ export const fetchZonesDropdown = async () => {
   const postZone = await fetch(`${baseUrl}/api/Utility/zones/nopagination`);
   return postZone.json();
 }
+export const postLevel = async () => {
+
+  const postl = await fetch(`${baseUrl}/api/User/postlevels`);
+  return postl.json();
+}
+export const post = async () => {
+
+  const postl = await fetch(`${baseUrl}/api/User/posts`);
+  return postl.json();
+}
 
 export const getDila = async (id) => {
 
@@ -133,7 +198,13 @@ export function Zones() {
   );
 }
 export function Muqaamat() {
-
+  let url = `${baseUrl}/api/Utility/muqamaat?`;
+  let division = localStorage.getItem("division");
+  if(division === "dilaat")
+  {
+    let divisionId = localStorage.getItem("divisionId");
+    url = `${baseUrl}/api/Utility/dilaat/${divisionId}/muqamaat?`
+  }
   const columns = [
     { title: "Name", field: "name" },
     { title: "Zone", field: "zone" },
@@ -149,7 +220,7 @@ export function Muqaamat() {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = `${baseUrl}/api/Utility/muqamaat?`;
+            
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -170,7 +241,13 @@ export function Muqaamat() {
 }
 
 export function Dilaat() {
-
+  let url = `${baseUrl}/api/Utility/dilaat?`;
+  let division = localStorage.getItem("division");
+  if(division === "zones")
+  {
+    let divisionId = localStorage.getItem("divisionId");
+    url = `${baseUrl}/api/Utility/zones/${divisionId}/muqamaat?`
+  }
   const columns = [
     { title: "Name", field: "name" },
     { title: "Zone", field: "zoneName" },
@@ -186,7 +263,7 @@ export function Dilaat() {
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
 
-            let url = `${baseUrl}/api/Utility/dilaat?`;
+           
             url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
               url += `&Keyword=${query.search}`
@@ -208,9 +285,6 @@ export function Dilaat() {
 }
 
 export function DilaMuqaam(props) {
-  // let handleClick = () => {
-  //   viewMembers()
-  // }
   const columns = [
     { title: "Name", field: "name" },
     {title: "Members", field:"name", render:rowData => {
@@ -254,13 +328,13 @@ export function DilaMuqaam(props) {
 }
 export function Members() {
   let [url, setUrl] = useState(`${baseUrl}/api/Member`);
-  
+    let division = localStorage.getItem("division");
+    if(division !== null || division !== undefined && division !== "national")
+    {
+      let divisionId = localStorage.getItem("divisionId");
+      url += `/${division}/${divisionId}`
+    }
   const tableRef = useRef();
-  const setSelects = () => {
-    // tableRef.current.onQueryChange()
-    // displaySelect(tableRef);
-
-  }
   const columns = [
     { title: "Member Number", field: "chandaNo" },
     { title: "Name", render: rowData => (`${rowData.firstName} ${rowData.surname}`) },
@@ -269,60 +343,6 @@ export function Members() {
     { title: "Category", field: "category" },
     { title: "Actions", render: rowData => <LongMenu domainId={rowData.chandaNo} domain="member" actions={["View"]} /> },
   ];
-
-  const [zones, setZones] = useState([{ key: "zone", value: "" }]);
-  const [dilas, setDilas] = useState([{ key: "dila", value: "" }]);
-  const [dilasDisplay, setdilasDisplay] = useState(false);
-  const [muqamis, setMuqamis] = useState([{ key: "muqami", value: "" }])
-
-
-  useEffect(async () => {
-    const zoneData = await fetch(`${baseUrl}/api/Utility/zones/nopagination`).then(res => res.json()).then(data => data.data)
-    let test = []
-    zoneData.forEach(z => {
-      let data = {
-        key: z.name,
-        value: z.id,
-      }
-      test.push(data);
-    })
-    setZones([...zones, ...test])
-
-  }, [])
-
-  const populateDilas = async(zoneId) => {
-    setdilasDisplay(true);
-    setUrl(`{baseUrl}/api/Member/zones/${zoneId}`)
-    tableRef.current.onQueryChange()
-    const dilaData = await fetch(`${baseUrl}/api/Utility/dilaatbyzone/nopagination?zoneId=${zoneId}`).then(res => res.json()).then(data => data.data)
-    let test = []
-    dilaData.forEach(z=> {
-      let data = {
-        key: z.name,
-        value: z.id,
-      }
-      test.push(data);
-    })
-    setDilas([{ key: "dila", value: "" }, ...test])
-  }
-  const populateMuqaam = async(zoneId) => {
-    setdilasDisplay(true);
-    setUrl(`${baseUrl}/api/Member/zones/${zoneId}`)
-    tableRef.current.onQueryChange()
-    const dilaData = await fetch(`${baseUrl}/api/Utility/dilaatbyzone/nopagination?zoneId=${zoneId}`).then(res => res.json()).then(data => data.data)
-    let test = []
-    dilaData.forEach(z=> {
-      let data = {
-        key: z.name,
-        value: z.id,
-      }
-      test.push(data);
-    })
-    setDilas([{ key: "dila", value: "" }, ...test])
-  }
-
-
-
 
   return (
     <div className="app">

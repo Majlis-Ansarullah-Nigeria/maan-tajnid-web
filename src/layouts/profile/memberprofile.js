@@ -58,6 +58,7 @@ function MemberInformation() {
                     mobile: info.phoneNo,
                     email: info.email,
                     location: info.address,
+                    category: info.category,
                     }}
 
                     social={[

@@ -16,7 +16,6 @@ Coded by www.creative-tim.com
 // @mui material components
 // MAAN Portal React components
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import './style.css'
 import MDBox from "components/MDBox";
 // MAAN Portal React example components
