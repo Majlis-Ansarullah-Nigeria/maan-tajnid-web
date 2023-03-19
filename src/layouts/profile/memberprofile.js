@@ -54,7 +54,7 @@ function MemberInformation() {
                     <ProfileInfoCard
                     title="profile information"
                     info={{
-                    fullName: `${info.firstName} ${info.surname}`,
+                    membershipID: `${info.chandaNo}`,
                     mobile: info.phoneNo,
                     email: info.email,
                     location: info.address,
