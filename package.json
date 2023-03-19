@@ -1,17 +1,9 @@
 {
-  "name": "material-dashboard-2-react",
-  "version": "2.1.0",
+  "name": "maan-tajneed-portal",
+  "version": "1.0.0",
   "private": true,
-  "author": "Creative Tim",
-  "license": "See license in https://www.creative-tim.com/license",
-  "description": "React version of MAAN Portal by Creative Tim",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
-  },
+  "author": "MAAN, Nigeria",
+  "description": "Majlis Ansarullah, Nigeria Tajneed Portal",
   "engines": {
     "node": ">=16",
     "npm": ">=6"
@@ -53,12 +45,6 @@
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
     
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
