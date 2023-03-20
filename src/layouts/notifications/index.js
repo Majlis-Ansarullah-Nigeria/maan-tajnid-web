@@ -4,7 +4,7 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022MAAN(https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -62,7 +62,7 @@ function Notifications() {
       icon="check"
       title="Material Dashboard"
       content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      dateTime=""
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -75,7 +75,7 @@ function Notifications() {
       icon="notifications"
       title="Material Dashboard"
       content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      dateTime=""
       open={infoSB}
       onClose={closeInfoSB}
       close={closeInfoSB}
@@ -88,7 +88,7 @@ function Notifications() {
       icon="star"
       title="Material Dashboard"
       content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      dateTime=""
       open={warningSB}
       onClose={closeWarningSB}
       close={closeWarningSB}
@@ -102,7 +102,7 @@ function Notifications() {
       icon="warning"
       title="Material Dashboard"
       content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
+      dateTime=""
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}

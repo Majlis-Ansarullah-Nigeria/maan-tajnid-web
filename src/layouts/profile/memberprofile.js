@@ -4,7 +4,7 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022MAAN(https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -35,6 +35,10 @@ function MemberInformation() {
     const [info, setInfo] = useState("");
     useEffect(async () => {
         const memberId = window.location.href.split("=")[1];
+        if(memberId === undefined)
+        {
+          memberId = localStorage.setItem("memberId");
+        }
         const member = await fetchMemberInfo(memberId);
         console.log(member.data);
         setInfo(member.data)

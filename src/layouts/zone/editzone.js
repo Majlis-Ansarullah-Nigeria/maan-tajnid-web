@@ -4,7 +4,7 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022MAAN(https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -50,7 +50,7 @@ const closeSuccessSB = () => setSuccessSB(false);
       icon="check"
       title="Majlis Ansarullah"
       content= {succesMessage}
-      dateTime="11 mins ago"
+      dateTime=""
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -64,7 +64,7 @@ const closeSuccessSB = () => setSuccessSB(false);
       icon="warning"
       title="Majlis Ansarullah"
       content= {errorMessage}
-      dateTime="11 mins ago"
+      dateTime=""
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}

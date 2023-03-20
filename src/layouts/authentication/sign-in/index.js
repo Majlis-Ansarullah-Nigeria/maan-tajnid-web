@@ -4,7 +4,7 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022MAAN(https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -45,6 +45,7 @@ function Basic() {
     };
     let response = await login(data);
     console.log(response);
+    setName(`${response.data.firstName}${response.data.lastName}`)
     if(response.status)
     {
 
@@ -52,10 +53,10 @@ function Basic() {
       const nationalRole = ["sadr","naib sadr awwal","naib sadr saf dom","naib sadran","qaid tajneed",];
       const dilaatRole = ["nazim ala", "naib nazim ala", "nazim tajneed"];
       const muqamRole = ["zaim ala", "naib zaim ala", "muntazim tajneed"];
-      if(response.data.roles <= 1)
+      if(response.data.roles.length == 1)
       {
-        setErrorSB(true);
-        return;
+        localStorage.setItem("division", "member");
+        localStorage.setItem("memberId", response.data.userName);
       }
       const national = response.data.roles.some(x => nationalRole.includes(x.name.toLowerCase()));
       const zone = response.data.roles.some(x => x.name.toLowerCase() === "coordinator");
@@ -91,6 +92,7 @@ function Basic() {
   const errorMessage = "Invalid login credentials"
   const [successSB, setSuccessSB] = useState(false);
   const [errorSB, setErrorSB] = useState(false);
+  const [name, setName] = useState("Majlis Ansarullah");
 
 const closeErrorSB = () => setErrorSB(false);
 const closeSuccessSB = () => setSuccessSB(false);
@@ -99,8 +101,8 @@ const closeSuccessSB = () => setSuccessSB(false);
       color="success"
       icon="check"
       title="Majlis Ansarullah"
-      content= {succesMessage}
-      dateTime="11 mins ago"
+      content = {name}
+      dateTime=""
       open={successSB}
       onClose={closeSuccessSB}
       close={closeSuccessSB}
@@ -113,7 +115,7 @@ const closeSuccessSB = () => setSuccessSB(false);
       icon="warning"
       title="Majlis Ansarullah"
       content= {errorMessage}
-      dateTime="11 mins ago"
+      dateTime=""
       open={errorSB}
       onClose={closeErrorSB}
       close={closeErrorSB}

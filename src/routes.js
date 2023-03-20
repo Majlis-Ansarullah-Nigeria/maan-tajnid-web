@@ -4,7 +4,7 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Copyright 2022MAAN(https://www.creative-tim.com)
 
 Coded by www.creative-tim.com
 
@@ -37,9 +37,6 @@ Coded by www.creative-tim.com
 
 // MAAN Portal React layouts
 import Dashboard from "layouts/dashboard";
-import Billing from "layouts/billing";
-import RTL from "layouts/rtl";
-import Notifications from "layouts/notifications";
 import MemberInformation from "layouts/profile/memberprofile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
@@ -154,6 +151,19 @@ else if(division === "zones"){
     },
   ]
   routes = [...routes, ...nationalView]
+}
+else if(division === "member"){
+  let memberView = [
+    {
+      type: "collapse",
+      name: "Profile",
+      key: "prof",
+      icon: <Icon fontSize="small">dashboard</Icon>,
+      route: "/profile",
+      component: <MemberInformation />,
+    },
+  ]
+  routes = [memberView]
 }
 
 routes = [...routes, {
