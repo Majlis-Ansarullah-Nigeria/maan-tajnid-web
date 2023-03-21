@@ -262,13 +262,12 @@ export function Dilaat() {
           options={{ debounceInterval: 500, padding: "dense" }}
           columns={columns}
           data={(query) => new Promise((resolve, reject) => {
-
-           
-            url += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
+            let webUrl = url;
+            webUrl += `PageNumber=${query.page + 1}&PageSize=${query.pageSize}`
             if (query.search) {
-              url += `&Keyword=${query.search}`
+              webUrl += `&Keyword=${query.search}`
             }
-            fetch(url).then(resp => resp.json()).then(resp => {
+            fetch(webUrl).then(resp => resp.json()).then(resp => {
               console.log(resp.data.data);
               resolve({
                 data: resp.data.data,
@@ -337,7 +336,7 @@ export function Members() {
         url += `/${division}/${divisionId}`
       }
     }
-        
+
   const tableRef = useRef();
   const columns = [
     { title: "Member Number", field: "chandaNo" },

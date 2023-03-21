@@ -153,6 +153,14 @@ else if(division === "national"){
 }
 else if(division === "zones"){
   let nationalView = [
+    {
+      type: "collapse",
+      name: "Dashboard",
+      key: "dashboard",
+      icon: <Icon fontSize="small">dashboard</Icon>,
+      route: "/dashboard",
+      component: <Dashboard />,
+    },
   {
     type: "collapse",
     name: "Members",
