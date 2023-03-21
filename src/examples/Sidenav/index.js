@@ -82,7 +82,10 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
-
+  let handleLogOut = () => {
+    console.log("logging out ...")
+    localStorage.clear();
+  }
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, href, route }) => {
     let returnValue;
@@ -96,18 +99,25 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           rel="noreferrer"
           sx={{ textDecoration: "none" }}
         >
+          {(key == "sign-in") ? 
           <SidenavCollapse
             name={name}
             icon={icon}
             active={key === collapseName}
             noCollapse={noCollapse}
-          />
+            onClick={handleLogOut}
+          /> : <SidenavCollapse
+              name={name}
+              icon={icon}
+              active={key === collapseName}
+              noCollapse={noCollapse}
+        /> }
         </Link>
       ) : (
         
         <NavLink key={key} to={route}>
           
-          <SidenavCollapse name={name} icon={icon} active={key === collapseName} />
+          {(key == "sign-in") ?  <SidenavCollapse name={name} icon={icon} active={key === collapseName}  onClick={handleLogOut} /> : <SidenavCollapse name={name} icon={icon} active={key === collapseName} />}
         </NavLink>
       );
     } else if (type === "title") {
