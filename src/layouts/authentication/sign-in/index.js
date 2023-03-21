@@ -1,17 +1,4 @@
-/**
-=========================================================
-* MAAN Portal React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022MAAN(https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 import MDSnackbar from "components/MDSnackbar";
 import { useState } from "react";
 // react-router-dom components
@@ -45,19 +32,16 @@ function Basic() {
     };
     let response = await login(data);
     console.log(response);
-    setName(`${response.data.firstName}${response.data.lastName}`)
+    setName(`Welcome ${response.data.firstName}  ${response.data.lastName}`)
     if(response.status)
     {
-
+      console.log(response)
       setSuccessSB(true);
       const nationalRole = ["sadr","naib sadr awwal","naib sadr saf dom","naib sadran","qaid tajneed",];
       const dilaatRole = ["nazim ala", "naib nazim ala", "nazim tajneed"];
       const muqamRole = ["zaim ala", "naib zaim ala", "muntazim tajneed"];
-      if(response.data.roles.length == 1)
-      {
-        localStorage.setItem("division", "member");
-        localStorage.setItem("memberId", response.data.userName);
-      }
+      localStorage.setItem("memberId", response.data.userName);
+      localStorage.setItem("division", "member");
       const national = response.data.roles.some(x => nationalRole.includes(x.name.toLowerCase()));
       const zone = response.data.roles.some(x => x.name.toLowerCase() === "coordinator");
       const dilaat = response.data.roles.some(x => dilaatRole.includes(x.name.toLowerCase()));
@@ -82,7 +66,13 @@ function Basic() {
         localStorage.setItem("divisionId", response.data.muqaamId);
       }
       localStorage.setItem("isLogin", true);
-      window.location.href = "/dashboard";
+      if(localStorage.getItem("division") == "member")
+      {
+        window.location.href = "/profile";
+      }
+      else{
+        window.location.href = "/dashboard";
+      }
     }
     else{
       setErrorSB(true);
@@ -145,7 +135,7 @@ const closeSuccessSB = () => setSuccessSB(false);
           textAlign="center"
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-            Sign in
+           MAAN Portal
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -156,7 +146,7 @@ const closeSuccessSB = () => setSuccessSB(false);
             <MDBox mb={2}>
               <MDInput type="password" label="Password" fullWidth id="password" />
             </MDBox>
-            <MDBox display="flex" alignItems="center" ml={-1}>
+            {/* <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
               <MDTypography
                 variant="button"
@@ -167,7 +157,7 @@ const closeSuccessSB = () => setSuccessSB(false);
               >
                 &nbsp;&nbsp;Remember me
               </MDTypography>
-            </MDBox>
+            </MDBox> */}
             <MDBox mt={4} mb={1}>
               <MDButton variant="gradient" color="info" fullWidth onClick={handleSignIn}>
                 sign in

@@ -50,7 +50,7 @@ function Footer({ light }) {
             color={light ? "white" : "text"}
             fontSize={size.sm}
           >
-            &copy; {new Date().getFullYear()}, Majlis Ansarullah Nigeria
+            &copy; {new Date().getFullYear()}, Majlis Ansarullah Nigeria Tajneed Portal
             <MDBox fontSize={size.md} color={light ? "white" : "dark"} mb={-0.5} mx={0.25}>
               
             </MDBox>

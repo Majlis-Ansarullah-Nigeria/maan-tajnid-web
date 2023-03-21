@@ -60,6 +60,8 @@ function MemberInformation() {
                     info={{
                     membershipID: `${info.chandaNo}`,
                     mobile: info.phoneNo,
+                    maritalStatus: info.maritalStatus,
+                    dateOfBirth: info.dateOfBirth,
                     email: info.email,
                     location: info.address,
                     category: info.category,

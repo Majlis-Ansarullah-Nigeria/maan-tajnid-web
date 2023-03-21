@@ -329,11 +329,15 @@ export function DilaMuqaam(props) {
 export function Members() {
   let [url, setUrl] = useState(`${baseUrl}/api/Member`);
     let division = localStorage.getItem("division");
-    if(division !== null || division !== undefined && division !== "national")
+    if( division != "national")
     {
-      let divisionId = localStorage.getItem("divisionId");
-      url += `/${division}/${divisionId}`
+      if(division !== null || division !== undefined)
+      {
+        let divisionId = localStorage.getItem("divisionId");
+        url += `/${division}/${divisionId}`
+      }
     }
+        
   const tableRef = useRef();
   const columns = [
     { title: "Member Number", field: "chandaNo" },
