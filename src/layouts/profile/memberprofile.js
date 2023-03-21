@@ -34,10 +34,10 @@ import {fetchMemberInfo} from "gateway"
 function MemberInformation() {
     const [info, setInfo] = useState("");
     useEffect(async () => {
-        const memberId = window.location.href.split("=")[1];
+        let memberId = window.location.href.split("=")[1];
         if(memberId === undefined)
         {
-          memberId = localStorage.setItem("memberId");
+          memberId = localStorage.getItem("memberId");
         }
         const member = await fetchMemberInfo(memberId);
         console.log(member.data);
