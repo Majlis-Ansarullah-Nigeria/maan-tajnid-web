@@ -106,8 +106,6 @@ export const updateZoneFetch = async (bodyObj, id) => {
   const postZone = await fetch(`${baseUrl}/api/Utility/zones/${id}`, settings);
   return postZone.json();
 }
-
-
 export const updateDila = async (zoneId, dilaId) => {
   const settings = {
 
@@ -125,8 +123,6 @@ export const fetchZone = async (id) => {
   const postZone = await fetch(`${baseUrl}/api/Utility/zones/${id}`);
   return postZone.json();
 }
-
-
 export const fetchMemberInfo = async (id) => {
 
   const postZone = await fetch(`${baseUrl}/api/Member/${id}`);
@@ -209,6 +205,7 @@ export function Muqaamat() {
     { title: "Name", field: "name" },
     { title: "Zone", field: "zone" },
     { title: "Dila", field: "dila" },
+    { title: "Category", field: "category" },
     { title: "Actions", render: rowData => <LongMenu domainId={rowData.id} domain="muqaam" actions={["View"]} /> },
   ];
   return (
