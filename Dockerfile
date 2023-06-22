@@ -5,7 +5,7 @@ FROM node:14-alpine as build-stage
 WORKDIR /app
 
 # Copy the package.json and package-lock.json (or yarn.lock) files
-# COPY package*.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install -g --f
