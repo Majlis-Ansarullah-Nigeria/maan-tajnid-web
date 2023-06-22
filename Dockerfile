@@ -13,7 +13,7 @@ RUN npm install "@material-ui/styles" --force
 
 # Copy the entire project to the working directory
 COPY . .
-
+RUN npm ci
 # Build the React app
 RUN npm run build
 
