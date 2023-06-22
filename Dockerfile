@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --f
+RUN npm install -g --f
+RUN npm install "@material-ui/styles" --force 
 
 # Copy the entire project to the working directory
 COPY . .
