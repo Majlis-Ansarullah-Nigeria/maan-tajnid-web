@@ -5,7 +5,7 @@ FROM node:14-alpine as build-stage
 WORKDIR /app
 
 # Copy the package.json and package-lock.json (or yarn.lock) files
-COPY package*.json ./
+# COPY package*.json ./
 
 # Install dependencies
 RUN npm install -g --f
@@ -13,7 +13,6 @@ RUN npm install "@material-ui/styles" --force
 
 # Copy the entire project to the working directory
 COPY . .
-RUN npm ci
 # Build the React app
 RUN npm run build
 
