@@ -10,6 +10,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install -g --f
 RUN npm install "@material-ui/styles" --force 
+RUN npm install --save @mui/lab@^5.0.0-alpha.72 @mui/styles@5.5.0
 
 # Copy the entire project to the working directory
 COPY . .
