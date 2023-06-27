@@ -52,15 +52,8 @@ jobs:
              docker system prune -f
             
             # Create new network and start new containers with Nginx and SSL
-            docker network create tajneednetwork
+            #docker network create tajneednetwork
             
             docker run -d --name tajneedweb-prod --network tajneednetwork adyemisworld/maantajneedweb
             
-            docker run -d --name maan-nginx --network tajneednetwork \
-              -p 80:80 -p 443:443 \
-              -v /etc/ssl/certs:/etc/ssl/certs \
-              -v /etc/ssl/private:/etc/ssl/private \
-              -v /etc/nginx:/etc/nginx \
-              nginx:alpine
-            
-             docker image prune -f
+            docker run -d --name maan-nginx --network tajneednetwork
