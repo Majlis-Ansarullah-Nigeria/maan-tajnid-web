@@ -42,17 +42,17 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |        
             # Stop existing container
-            docker container stop tajneedweb-prod maan-nginx
+            docker container stop tajneedweb-prod || true
              
             # Remove existing container
             docker container prune -f
            
             # Remove existing image
-             docker image rm adyemisworld/maantajneedweb:latest -f
+             docker image rm adyemisworld/maantajneedweb:latest -f || true
              docker system prune -f
             
             # Create new network and start new containers with Nginx and SSL
-            docker network create tajneednetwork
+            #docker network create tajneednetwork
             
-            docker run -d --name tajneedweb-prod --network tajneednetwork adyemisworld/maantajneedweb
+            docker run -d -p 3000:80 --name tajneedweb-prod --network tajneednetwork adyemisworld/maantajneedweb
           
