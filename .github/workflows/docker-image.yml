@@ -54,5 +54,5 @@ jobs:
             # Create new network and start new containers with Nginx and SSL
             #docker network create tajneednetwork
             
-            docker run -d -p 3000:80 --name tajneedweb-prod --network tajneednetwork adyemisworld/maantajneedweb
+            docker run -d -p 80:3000 --name tajneedweb-prod --network tajneednetwork adyemisworld/maantajneedweb
           
