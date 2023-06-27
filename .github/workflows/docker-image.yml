@@ -55,5 +55,4 @@ jobs:
             docker network create tajneednetwork
             
             docker run -d --name tajneedweb-prod --network tajneednetwork adyemisworld/maantajneedweb
-            
-            docker run -d --name maan-nginx --network tajneednetwork
+          
